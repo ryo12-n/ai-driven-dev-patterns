@@ -1,53 +1,32 @@
-# CLAUDE.md — dev-process-improvement 共通ルール
+# プロジェクトルール: dev-process-improvement
 
-このファイルは `dev-process-improvement/` 配下のすべてのセッションに適用される共通ルールです。
+## 概要
+このリポジトリは「開発プロセス改善」を継続的に回すためのもの。
+改善施策ごとに `initiatives/<施策名>/` フォルダを作り、L1・L2セッションで分担して進める。
 
----
+## セッション構成
 
-## セッション種別の定義
+| セッション | ロール | 責務 |
+|-----------|--------|------|
+| L1 (マネージャー) | 調査・意思決定・計画・ゲート判定 | initiatives/ 内の proposal, plan, tasks, gate_review を管理 |
+| L2 (ワーカー/実施) | タスク実行・作業記録・レポート・課題起票 | initiatives/ 内の work_log, work_report, issues を管理 |
+| L2 (ワーカー/評価) | 評価計画・評価実施・レポート・課題起票 | initiatives/ 内の eval_plan, eval_report, issues を管理 |
 
-| 種別 | 役割 | 専用ルール |
-|---|---|---|
-| **L1（管理）** | バックログ管理・計画策定・ゲート判定・L2への指示出し | `.claude/rules/l1-manager.md` |
-| **L2-worker（実施）** | タスク実行・作業ログ記録・成果物生成 | `.claude/rules/l2-worker.md` |
-| **L2-evaluator（評価）** | 成果物の評価・評価レポート生成 | `.claude/rules/l2-evaluator.md` |
+## ファイル命名規則
 
-セッション起動時は、必ずセッション種別に対応するルールファイルを追加で読み込ませること。
-
----
-
-## ファイル命名規約
-
-- 施策フォルダ名: `initiatives/<連番>_<施策名-kebab-case>/`（例: `initiatives/01_ci-speed-up/`）
-- 施策内ファイルは `_template/` のプレフィックス番号を維持する（`00_` 〜 `08_`）
-- 作業ログのエントリは `### YYYY-MM-DD HH:MM` の見出し形式で追記する
-
----
-
-## 出力形式の規約
-
-- すべての出力は日本語で記述する
-- Markdownのみを使用する（HTMLタグは使わない）
-- フロントマターを各テンプレートに持たせ、`status` フィールドで進捗を管理する
-  - 有効な `status` 値: `draft` / `in-progress` / `done` / `blocked` / `cancelled`
-- 施策の判断・承認は L1 セッションのみが行う
-- L2 セッションは担当フェーズ外のファイルを上書きしない
-
----
-
-## ディレクトリの参照関係
-
-```
-sessions
-  ├── L1 → backlog/ideas.md を起点に initiatives/ を管理
-  ├── L2-worker → initiatives/<施策名>/02_tasks.md を起点に実施
-  └── L2-evaluator → initiatives/<施策名>/04_work_report.md を起点に評価
-```
-
----
+- initiatives/ 内のファイルは番号付きプレフィックス（00〜08）で管理する
+- 作業履歴（work_log）はタイムスタンプ付きで追記する
+- 課題（issues）は連番IDを振る
 
 ## 禁止事項
 
-- L2 セッションが `08_gate_review.md` の判定を書き込むことは禁止
-- L1 セッションが `03_work_log.md` / `04_work_report.md` を直接編集することは禁止（読み取りは可）
-- `_template/` フォルダを施策フォルダとして直接使用することは禁止（必ずコピーして使う）
+- L2セッションが plan や gate_review を直接変更すること（L1の責務）
+- L1セッションが work_log を直接編集すること（L2の責務）
+- 施策フォルダの外にあるファイルへの無断変更
+- フェーズゲートを通過していない施策の次フェーズ着手
+
+## コマンド
+
+- 新規施策開始: 「○○の改善施策を開始して」→ _template/ をコピーして initiatives/<施策名>/ を作成
+- 状況確認: 「施策一覧を見せて」→ initiatives/ 内の全施策のステータスを一覧表示
+- ゲート判定: 「○○のフェーズゲート判定をして」→ gate_review を更新
