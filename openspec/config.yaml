@@ -1,0 +1,44 @@
+schema: spec-driven
+
+context: |
+  ## リポジトリ概要
+  このリポジトリは「Claude Code + OpenSpec を前提とした仕様駆動開発のテンプレート」である。
+  実際のアプリケーションコードではなく、開発プロセスのパターン集・テンプレート集を管理する場所。
+
+  ## ディレクトリ構成
+  - openspec/          : OpenSpec 本体（仕様駆動レイヤ）
+    - config.yaml      : スキーマ・プロジェクトコンテキスト設定（このファイル）
+    - specs/           : 現在状態の仕様（Single Source of Truth）
+    - changes/         : 進行中の変更サイクル（完了したら specs/ にマージ）
+  - docs/              : 人間向けの日本語ドキュメント（設計書テンプレート等）
+  - src/               : アプリケーション本体のソースコード
+  - tests/             : テストコード
+  - .claude/           : Claude Code 設定・コマンド・スキル
+    - commands/opsx/   : /opsx:* スラッシュコマンド（openspec init が生成）
+    - skills/          : OpenSpec スキル（openspec init が生成）
+    - rules/           : パス条件付きルール（design-doc.md, code-in-docs.md）
+  - dev-process-improvement/ : 開発プロセス改善の施策管理
+
+  ## 命名規約
+  - change 名: kebab-case（例: add-user-profile, setup-auth）
+  - spec ディレクトリ: ドメイン単位の kebab-case（例: specs/user/, specs/auth/）
+  - 言語: ドキュメントは日本語、コードは英語
+
+  ## 変更サイクルの流れ
+  1. /opsx:new <change-name> でサイクル開始
+  2. /opsx:continue を繰り返し proposal → specs → design → tasks を生成
+  3. /opsx:apply で tasks.md に従ったコード実装
+  4. /opsx:archive で delta spec を openspec/specs/ にマージ・アーカイブ
+
+rules:
+  proposal:
+    - 日本語で記述すること
+    - 'Summary / Motivation / Scope / Success Criteria のセクションを必ず含めること'
+  design:
+    - 日本語で記述すること
+    - mermaid 図を最低1つ含めること（アーキテクチャ図またはデータフロー図）
+    - 本文中にコードブロックを入れないこと（実装の詳細は tasks.md で扱う）
+  tasks:
+    - 日本語で記述すること
+    - チェックボックス形式（- [ ]）でタスクを列挙すること
+    - DB / API / フロントエンド / テスト のカテゴリに分けること
