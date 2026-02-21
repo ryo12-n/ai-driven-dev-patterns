@@ -1,96 +1,69 @@
-# セッション起動ガイド
+# セッション運用ガイド
 
-Claude Code で各セッションタイプを起動するための手順書です。
+## セッションの起動方法
 
----
+### 方法1: Claude Code Agent Teams（推奨）
 
-## セッションタイプ一覧
-
-| タイプ | 用途 | 読み込むルールファイル |
-|---|---|---|
-| L1（管理） | バックログ管理・計画・ゲートレビュー | `CLAUDE.md` + `.claude/rules/l1-manager.md` |
-| L2-worker（実施） | タスク実行・作業ログ記録 | `CLAUDE.md` + `.claude/rules/l2-worker.md` |
-| L2-evaluator（評価） | 成果物評価・評価レポート生成 | `CLAUDE.md` + `.claude/rules/l2-evaluator.md` |
-
----
-
-## L1 セッションの起動
-
-### 手順
-
-1. Claude Code を `dev-process-improvement/` ディレクトリで起動する
-2. `CLAUDE.md` は自動で読み込まれる
-3. セッション冒頭に以下を貼り付ける:
+Claude Code の Agent Teams 機能を使い、L1をリード、L2をチームメイトとして起動する。
 
 ```
-.claude/rules/l1-manager.md を読み込んでください。
-その後、backlog/ideas.md を確認して現在の状況を把握してください。
+# Claude Code を起動し、以下のように指示:
+
+あなたはL1（マネージャー）です。
+以下のチームを作成してください:
+
+1. L2-worker（実施セッション）: タスクの実行と作業記録を担当
+2. L2-evaluator（評価セッション）: 作業成果の評価を担当
+
+initiatives/[施策名]/ のファイルに従って作業を進めてください。
+L2にはplan approvalを要求してください。
 ```
 
-または `templates/l1-prompts.md` から目的に合ったプロンプトをコピーして使用する。
+### 方法2: 手動で3セッション起動
 
-### 主な用途別プロンプト
+別々のターミナル（またはtmuxペイン）で3つのClaude Codeセッションを起動する。
 
-- バックログ整理 → `templates/l1-prompts.md` #5
-- 施策立ち上げ → `templates/l1-prompts.md` #2
-- ゲートレビュー → `templates/l1-prompts.md` #4
+```bash
+# ターミナル1: L1 マネージャー
+cd dev-process-improvement
+claude
+# → 「あなたはL1（マネージャー）セッションです。CLAUDE.mdと.claude/rules/l1-manager.mdに従ってください。」
 
----
+# ターミナル2: L2 ワーカー（実施）
+cd dev-process-improvement
+claude
+# → 「あなたはL2（実施）セッションです。.claude/rules/l2-worker.mdに従ってください。」
 
-## L2-worker セッションの起動
+# ターミナル3: L2 ワーカー（評価）
+cd dev-process-improvement
+claude
+# → 「あなたはL2（評価）セッションです。.claude/rules/l2-evaluator.mdに従ってください。」
+```
 
-### 前提条件
+### 方法3: Claude Projects（Web版）
 
-- L1 が `02_tasks.md` を作成・承認済みであること
-- 担当タスク範囲が L1 から指示されていること
+Claude Projectsで3つのプロジェクトを作成し、各プロジェクトのカスタム指示に
+CLAUDE.md + 該当するルールファイルの内容を設定する。
 
-### 手順
+## 施策の進め方チェックリスト
 
-1. `templates/l2-prompts.md` の「L2-worker: 実施セッション起動プロンプト」をコピー
-2. `（施策フォルダ名）` と `（T開始〜T終了番号）` を埋める
-3. Claude Code セッションの冒頭に貼り付けて起動
+### 開始時
+- [ ] initiatives/_template/ をコピーして initiatives/<施策名>/ を作成
+- [ ] L1: 00_proposal.md を記入
+- [ ] L1: 01_plan.md を記入
+- [ ] L1: 02_tasks.md を記入
+- [ ] L2セッションを起動
 
-### 注意事項
+### 実施中
+- [ ] L2(実施): 03_work_log.md に実施計画サマリを記載
+- [ ] L2(実施): タスクを実施し、作業ログを追記
+- [ ] L2(実施): 04_work_report.md を作成
+- [ ] L2(評価): 05_eval_plan.md を作成
+- [ ] L2(評価): 06_eval_report.md を作成
+- [ ] L2(実施/評価): 課題があれば 07_issues.md に起票
 
-- 各 L2-worker セッションは独立したコンテキストで起動する（セッション間の引き継ぎは `03_work_log.md` 経由）
-- 中断後の再開は「継続セッション起動プロンプト」を使用する
-
----
-
-## L2-evaluator セッションの起動
-
-### 前提条件
-
-- L2-worker が `04_work_report.md` を生成済みであること
-- L1 が `05_eval_plan.md` を作成・承認済みであること
-
-### 手順
-
-1. `templates/l2-prompts.md` の「L2-evaluator: 評価セッション起動プロンプト」をコピー
-2. `（施策フォルダ名）` を埋める
-3. Claude Code セッションの冒頭に貼り付けて起動
-
----
-
-## セッション終了時のチェックリスト
-
-### L2-worker 終了時
-
-- [ ] すべての完了タスクのチェックボックスが `[x]` になっている
-- [ ] `03_work_log.md` に終了エントリが追記されている
-- [ ] `04_work_report.md` が生成されている
-- [ ] 未完了タスクがある場合は `07_issues.md` に記録されている
-- [ ] L1 への完了報告メッセージが出力されている
-
-### L2-evaluator 終了時
-
-- [ ] `06_eval_report.md` が生成されている
-- [ ] 総合グレードとスコアが記入されている
-- [ ] `08_gate_review.md` は編集していない（L1が担当）
-
-### L1 ゲートレビュー後
-
-- [ ] `08_gate_review.md` に判定結果が記入されている
-- [ ] `proceed` の場合: 次フェーズの指示が準備されている
-- [ ] `rework` の場合: 具体的な修正指示が記載されている
-- [ ] `close` の場合: クローズ理由と学びが記録されている
+### ゲート判定
+- [ ] L1: 04, 06, 07 を確認
+- [ ] L1: 08_gate_review.md に判定を記入
+- [ ] L1: 必要に応じて 01_plan.md, 02_tasks.md を修正
+- [ ] 判定結果に応じて次フェーズへ or 差し戻し

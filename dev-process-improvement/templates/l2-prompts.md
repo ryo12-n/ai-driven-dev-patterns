@@ -1,67 +1,46 @@
-# L2セッション用プロンプト集
+# L2 ワーカーセッション プロンプトテンプレート
 
-> これらのプロンプトをコピーして L2 セッションの冒頭に貼り付けてください。
-> `（）`内は実際の値に置き換えてください。
-
----
-
-## L2-worker: 実施セッション起動プロンプト
+## 【実施セッション】タスクを実行する
 
 ```
-あなたは施策の実施を担当する実行AI（L2-worker）です。
-以下のファイルを読み込んでください：
-- dev-process-improvement/CLAUDE.md
-- dev-process-improvement/.claude/rules/l2-worker.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/01_plan.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/02_tasks.md
+あなたはL2（実施）セッションです。
+initiatives/[施策名]/ の 02_tasks.md を読み、未完了タスクを確認してください。
 
-担当タスク範囲: T（開始番号） 〜 T（終了番号）
+以下の手順で進めてください:
+1. 03_work_log.md の冒頭に実施計画サマリを記載
+2. タスクを1つずつ実施し、03_work_log.md にタイムスタンプ付きで記録
+3. 課題を発見したら 07_issues.md に起票
+4. 全タスク完了後、04_work_report.md に作業レポートを作成
 
-作業を開始する前に、担当タスクの内容を確認して作業計画を提示してください。
-承認後に実施を開始します。
+02_tasks.md のチェックボックスも更新してください。
 ```
 
----
-
-## L2-worker: 継続セッション起動プロンプト（中断からの再開）
+## 【評価セッション】作業を評価する
 
 ```
-あなたは施策の実施を担当する実行AI（L2-worker）です。
-以下のファイルを読み込んでください：
-- dev-process-improvement/CLAUDE.md
-- dev-process-improvement/.claude/rules/l2-worker.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/02_tasks.md（未完了タスクを確認）
-- dev-process-improvement/initiatives/（施策フォルダ名）/03_work_log.md（前回の作業を確認）
+あなたはL2（評価）セッションです。
+initiatives/[施策名]/ の以下を読んでください:
+- 01_plan.md（成功基準の確認）
+- 04_work_report.md（評価対象の確認）
 
-前回の作業を引き継ぎ、未完了タスクから再開してください。
+以下の手順で進めてください:
+1. 05_eval_plan.md に評価計画を作成（評価項目・方法・判定基準）
+2. 評価を実施し、06_eval_report.md に評価レポートを作成
+3. 課題を発見したら 07_issues.md に起票
+
+評価は客観的に、判定基準に対する達成度で判定してください。
 ```
 
----
-
-## L2-evaluator: 評価セッション起動プロンプト
+## 【実施セッション】課題を起票する
 
 ```
-あなたは施策の成果を評価する評価AI（L2-evaluator）です。
-以下のファイルを読み込んでください：
-- dev-process-improvement/CLAUDE.md
-- dev-process-improvement/.claude/rules/l2-evaluator.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/01_plan.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/04_work_report.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/05_eval_plan.md
+作業中に以下の課題を発見しました。
+initiatives/[施策名]/07_issues.md に起票してください。
 
-05_eval_plan.md の評価基準に従って評価を実施し、06_eval_report.md を生成してください。
-```
-
----
-
-## L2-worker: 作業レポート生成のみ（既存ログから）
-
-```
-あなたは施策の実施を担当する実行AI（L2-worker）です。
-以下のファイルを読み込んでください：
-- dev-process-improvement/.claude/rules/l2-worker.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/02_tasks.md
-- dev-process-improvement/initiatives/（施策フォルダ名）/03_work_log.md
-
-作業ログを元に 04_work_report.md を生成してください。実装作業は行いません。
+【種別】不具合 / 改善提案 / リスク / 計画変更提案
+【タイトル】（ここに記入）
+【関連タスク】T-XXX
+【内容】（ここに記入）
+【影響】（ここに記入）
+【提案する対応】（ここに記入）
 ```
