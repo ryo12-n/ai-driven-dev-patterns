@@ -1,0 +1,68 @@
+# AI-Driven Development Framework - Git除外設定
+
+# セッションログ（大量に生成されるため除外）
+logs/**/session_*.log
+
+# 一時ファイル
+.claude/tmp/
+*.tmp
+*.log~
+
+# エディタ・IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# 環境変数
+.env
+.env.local
+.env.*.local
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Git管理対象（除外しない）
+# - locks/*.lock （タスクロックは管理対象）
+# - logs/**/progress.md （進捗ログは管理対象）
+# - tasks/ done/ （タスク管理ファイルは管理対象）
