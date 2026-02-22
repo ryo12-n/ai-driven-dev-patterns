@@ -13,6 +13,7 @@ paths: "triage/**/*.md"
 2. `00_pre_investigation.md` の穴埋めを実施する（現状把握）
    - inbox / backlog / CSV / initiatives の現状に加え、`.claude/rules/*.md` と `docs/workflow.md` の整合性も確認する
    - `docs/collab-log.md` の未蒸留エントリも確認する
+   - `inbox/ref_*.md`（参照物ポインター）がある場合は対応する `refs/` の内容も確認する
 3. 調査結果をもとに `01_plan.md` を作成する（今回の重点を決める）
 4. タスクを実施し `02_work_log.md` に記録する
 5. `03_report.md` を作成し、**PR として提出してユーザーにレビューを依頼する**
