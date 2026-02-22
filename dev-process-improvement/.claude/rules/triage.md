@@ -12,6 +12,7 @@ paths: "triage/**/*.md"
 1. `triage/_template/` を `triage/YYYYMMDD/` にコピーしてセッションフォルダを作成する
 2. `00_pre_investigation.md` の穴埋めを実施する（現状把握）
    - inbox / backlog / CSV / initiatives の現状に加え、`.claude/rules/*.md` と `docs/workflow.md` の整合性も確認する
+   - `docs/collab-log.md` の未蒸留エントリも確認する
 3. 調査結果をもとに `01_plan.md` を作成する（今回の重点を決める）
 4. タスクを実施し `02_work_log.md` に記録する
 5. `03_report.md` を作成し、**PR として提出してユーザーにレビューを依頼する**
@@ -28,6 +29,7 @@ paths: "triage/**/*.md"
 | `triage/YYYYMMDD/03_report.md` | ✏️ 作成（振り返りレポート）→ PR として提出 |
 | `backlog/ideas.md` | ✏️ 追記・変更（ユーザー承認後のみ） |
 | `プロセス改善_課題管理.csv` | ✏️ 直接起票（トリアージで発見した課題） |
+| `docs/collab-log.md` | ✏️ 未蒸留エントリを読み取り・蒸留判断・蒸留済エントリの削除 |
 
 ## ルール
 
@@ -40,6 +42,9 @@ paths: "triage/**/*.md"
   - 「課題かどうかまだ判断できない粒度の粗いメモ」は `02_work_log.md` の「判断・気づき」欄に書く。
     走査完了後に改めて判断し、課題と確定したものだけ CSV に起票する
 - L1・L2 の成果物（initiatives/）は読み取りのみ。編集しない
+- **collab-log の蒸留**: `docs/collab-log.md` の未蒸留エントリを確認し、ルール・docsへの反映を判断する
+  - 反映したエントリは `docs/collab-log.md` から削除する（git履歴が証跡）
+  - 判断保留のものはステータスを「保留」に更新して残す
 - **ルールとworkflowの整合性チェック**: `.claude/rules/*.md` と `docs/workflow.md` を見比べ、記述の乖離を確認する
   - 軽微なズレ（表現の揺れ・抜け漏れ）はそのトリアージセッション内で修正する
   - 大きな乖離や方針判断が必要なものは `プロセス改善_課題管理.csv` に起票して次回以降に対応する
