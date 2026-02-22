@@ -31,7 +31,9 @@
 
 ```
 1. 事前調査      → triage/YYYYMMDD/00_pre_investigation.md を埋める
-                   （inbox/backlog/CSV/initiative の現状把握）
+                   （inbox/backlog/CSV/initiative/refs の現状把握）
+                   ・refs/ に孤立エントリ（inbox/ref_*.md なし）があればユーザーに内容を確認し
+                     inbox/ref_<名前>.md を新規作成（概要 + 今後の扱い方針を記載）
 2. 実施計画作成  → triage/YYYYMMDD/01_plan.md を作成
                    （今回の重点・走査タスクを決める）
 3. 実施          → inbox / backlog / CSV を走査・分類
@@ -39,7 +41,8 @@
 5. レポート作成  → triage/YYYYMMDD/03_report.md を作成 → PR として提出
 6. ユーザーレビュー
 7. backlog 反映  → 承認後に backlog/ideas.md を更新
-8. 課題起票      → 課題と確定したものを プロセス改善_課題管理.csv に直接起票
+8. 後処理        → 処理済み inbox アイテムを削除（git 履歴が証跡）
+9. 課題起票      → 課題と確定したものを プロセス改善_課題管理.csv に直接起票
 ```
 
 > **課題起票の考え方**
