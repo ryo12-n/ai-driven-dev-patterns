@@ -30,3 +30,9 @@
 - 新規施策開始: 「○○の改善施策を開始して」→ _template/ をコピーして initiatives/<施策名>/ を作成
 - 状況確認: 「施策一覧を見せて」→ initiatives/ 内の全施策のステータスを一覧表示
 - ゲート判定: 「○○のフェーズゲート判定をして」→ gate_review を更新
+
+## ドキュメント整合性ルール
+
+`.claude/rules/*.md`（AIルールファイル）が正の情報源（Source of Truth）。`docs/workflow.md` はその人間向け可視化。
+
+**ルールファイルを変更した場合は、必ず `docs/workflow.md` も合わせて更新すること。**

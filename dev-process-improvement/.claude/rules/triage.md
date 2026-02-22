@@ -11,6 +11,7 @@ paths: "triage/**/*.md"
 
 1. `triage/_template/` を `triage/YYYYMMDD/` にコピーしてセッションフォルダを作成する
 2. `00_pre_investigation.md` の穴埋めを実施する（現状把握）
+   - inbox / backlog / CSV / initiatives の現状に加え、`.claude/rules/*.md` と `docs/workflow.md` の整合性も確認する
 3. 調査結果をもとに `01_plan.md` を作成する（今回の重点を決める）
 4. タスクを実施し `02_work_log.md` に記録する
 5. `03_report.md` を作成し、**PR として提出してユーザーにレビューを依頼する**
@@ -39,6 +40,9 @@ paths: "triage/**/*.md"
   - 「課題かどうかまだ判断できない粒度の粗いメモ」は `02_work_log.md` の「判断・気づき」欄に書く。
     走査完了後に改めて判断し、課題と確定したものだけ CSV に起票する
 - L1・L2 の成果物（initiatives/）は読み取りのみ。編集しない
+- **ルールとworkflowの整合性チェック**: `.claude/rules/*.md` と `docs/workflow.md` を見比べ、記述の乖離を確認する
+  - 軽微なズレ（表現の揺れ・抜け漏れ）はそのトリアージセッション内で修正する
+  - 大きな乖離や方針判断が必要なものは `プロセス改善_課題管理.csv` に起票して次回以降に対応する
 
 ## PR 作成後のユーザー確認スクリプト
 
