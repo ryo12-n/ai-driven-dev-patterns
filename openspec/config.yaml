@@ -42,3 +42,7 @@ rules:
     - 日本語で記述すること
     - チェックボックス形式（- [ ]）でタスクを列挙すること
     - DB / API / フロントエンド / テスト のカテゴリに分けること
+  specs:
+    - 'spec ファイルには RFC2119 キーワード（MUST / SHALL / SHOULD / MAY）を必ず含めること（openspec validate の要件）'
+    - '新規 spec を追加する場合は "ADDED Requirements" セクションを使うこと'
+    - '既存 spec への要件追加は "MODIFIED Requirements" セクションを使うこと'
