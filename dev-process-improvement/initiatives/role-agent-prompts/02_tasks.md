@@ -18,7 +18,7 @@
 | **成果物** | `initiatives/role-agent-prompts/drafts/01_poc_role_analysis.md` |
 | **完了条件** | ドラフトファイルが作成され、分析観点①〜④が網羅されている |
 | **優先度** | 🔴 |
-| **ステータス** | ⬜ |
+| **ステータス** | ✅ |
 
 ---
 
@@ -31,13 +31,49 @@
 | **成果物** | `initiatives/role-agent-prompts/drafts/02_role_library_proposal.md` |
 | **完了条件** | ドラフトファイルが作成され、作成内容①〜④が含まれている |
 | **優先度** | 🔴 |
+| **ステータス** | ✅ |
+
+---
+
+## フェーズ2 タスク（L2-worker 担当）
+
+### T-003: `roles/_base/common.md` の作成
+
+| 項目 | 内容 |
+|------|------|
+| **やること** | 全ロール共通の土台ファイルを作成する。`refs/ai-driven-development-poc/.claude/base_prompt.md` を参考に、本リポジトリ向けに内容を整理する |
+| **作成内容** | ① エージェントの役割・想定アーキテクチャの説明 ② リポジトリ構造（`src/`, `tests/`, `openspec/`, `docs/` の役割） ③ 基本的な作業ループ（タスク確認→実装→テスト→コミット→完了報告） ④ 共通禁止事項 ⑤ コミット規約 ⑥ 完了報告の形式 |
+| **成果物** | `roles/_base/common.md`（リポジトリルート直下） |
+| **完了条件** | ファイルが作成され、作成内容①〜⑥が含まれている |
+| **優先度** | 🔴 |
 | **ステータス** | ⬜ |
 
 ---
 
-## フェーズ2 タスク（フェーズ1のゲート通過・L1+ユーザーレビュー後に記載）
+### T-004: 転用可能ロール4件のファイル作成
 
-<!-- フェーズ1分析結果をL1+ユーザーで確認後、実施計画を策定してここに追記する -->
+| 項目 | 内容 |
+|------|------|
+| **やること** | poc からほぼそのまま転用できる4ロールのファイルを作成する。poc のロールファイルをベースに、パス参照（`./ci/run_fast.sh` 等）を本リポジトリの構造に合わせて修正する |
+| **対象ロール** | Bug Fixer（`roles/bug_fixer.md`）、Refactorer（`roles/refactorer.md`）、Optimizer（`roles/optimizer.md`）、Test Writer（`roles/test_writer.md`） |
+| **参照元** | `refs/ai-driven-development-poc/.claude/roles/` 配下の対応ファイル |
+| **完了条件** | 4ファイルが作成され、冒頭に `roles/_base/common.md` を読む旨の記載がある。poc 固有のパス参照が本リポジトリ向けに修正されている |
+| **優先度** | 🔴 |
+| **ステータス** | ⬜ |
+
+---
+
+### T-005: 改修必要ロール3件のファイル作成
+
+| 項目 | 内容 |
+|------|------|
+| **やること** | openspec 連携等の本リポジトリ固有コンテキストに応じた改修が必要な3ロールのファイルを作成する。poc のロールファイルをベースとしつつ、openspec 統合が未定義の箇所には明示的な注記を入れる |
+| **対象ロール** | Feature Builder（`roles/feature_builder.md`）、Reviewer（`roles/reviewer.md`）、Documentarian（`roles/documentarian.md`） |
+| **注記の記述方針** | openspec との連携が必要な箇所に `<!-- TODO: openspec 統合 (ISS-002 参照) -->` 形式でコメントを入れ、poc からの差分を明示する |
+| **参照元** | `refs/ai-driven-development-poc/.claude/roles/` 配下の対応ファイル、`drafts/02_role_library_proposal.md` の「本リポジトリ固有の要件」セクション |
+| **完了条件** | 3ファイルが作成され、冒頭に `roles/_base/common.md` を読む旨の記載がある。openspec 統合が必要な箇所に TODO コメントがある |
+| **優先度** | 🔴 |
+| **ステータス** | ⬜ |
 
 ---
 
