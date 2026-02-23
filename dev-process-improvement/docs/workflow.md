@@ -32,6 +32,8 @@
 ```
 1. 事前調査      → triage/YYYYMMDD/00_pre_investigation.md を埋める
                    （inbox/backlog/CSV/initiative/refs の現状把握）
+                   ・docs/collab-log.md の未蒸留エントリも確認する
+                   ・.claude/rules/*.md と docs/workflow.md の整合性も確認する
                    ・refs/ に孤立エントリ（inbox/ref_*.md なし）があればユーザーに内容を確認し
                      inbox/ref_<名前>.md を新規作成（概要 + 今後の扱い方針を記載）
 2. 実施計画作成  → triage/YYYYMMDD/01_plan.md を作成
