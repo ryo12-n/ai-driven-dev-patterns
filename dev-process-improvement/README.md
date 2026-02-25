@@ -44,10 +44,6 @@ dev-process-improvement/
 ├── backlog/                             # 施策候補・アイデアのストック
 │   └── ideas.md                         # 優先度付きアイデア一覧
 │
-├── templates/                           # セッション起動プロンプトのひな形
-│   ├── l1-prompts.md
-│   └── l2-prompts.md
-│
 └── docs/                                # 運用ドキュメント（人間向け）
     ├── workflow.md                       # プロセス仕様書（.claude/rules/ の人間向け可視化）
     └── implementation.md                 # 実装ノート・補足
@@ -78,50 +74,28 @@ L2 ワーカー（評価）  : 成果物の品質評価
 
 #### 起動方法
 
-**方法1: Claude Code Agent Teams（推奨）**
+**マネージャー・ワーカー方式**
 
 L1セッションを1つ起動し、以下のプロンプトを与える。
 L1がサブエージェント（Taskツール）としてL2を順番に起動・管理する。
 
+**新施策を開始する**
+
 ```
-あなたはL1（マネージャー）セッションです。
-CLAUDE.md と .claude/rules/l1-manager.md のルールに従ってください。
+.claude/rules/l1-manager.md に従う
+backlog: <施策名>
+```
 
-対象施策: initiatives/[施策名]/
+**既存施策を継続する**
 
-00_proposal.md・01_plan.md・02_tasks.md を確認し、
-l1-manager.md の「L2サブエージェントの起動・オーケストレーション」に従って
-L2-worker → L2-evaluator の順で起動してください。
-全L2の完了後、08_gate_review.md を作成してください。
+```
+.claude/rules/l1-manager.md に従う
+施策: initiatives/<フォルダ名>/
 ```
 
 > - L2はL1が自律的に起動する。人間は介在しない。
 > - 唯一の人間チェックポイントは `08_gate_review.md` のレビューのみ。
 > - L2の起動順序・渡すコンテキストの詳細はL1が判断する（`l1-manager.md` 参照）。
-
-**方法2: 手動で3セッション起動**
-
-```bash
-# ターミナル1: L1 マネージャー
-cd dev-process-improvement
-claude
-# → 「あなたはL1（マネージャー）セッションです。CLAUDE.mdと.claude/rules/l1-manager.mdに従ってください。」
-
-# ターミナル2: L2 ワーカー（実施）
-cd dev-process-improvement
-claude
-# → 「あなたはL2（実施）セッションです。.claude/rules/l2-worker.mdに従ってください。」
-
-# ターミナル3: L2 ワーカー（評価）
-cd dev-process-improvement
-claude
-# → 「あなたはL2（評価）セッションです。.claude/rules/l2-evaluator.mdに従ってください。」
-```
-
-**方法3: Claude Projects（Web版）**
-
-Claude Projectsで3つのプロジェクトを作成し、各プロジェクトのカスタム指示に
-CLAUDE.md + 該当するルールファイルの内容を設定する。
 
 ---
 
