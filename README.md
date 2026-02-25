@@ -116,6 +116,20 @@ Claude Code がプロジェクトを開いたとき自動で読み込まれる�
 
 ---
 
+## upstream 同期
+
+本リポジトリは外部リポジトリ(upstream)の変更を定期的に取り込む運用をしている。
+以下の4ディレクトリは社内固有の作業実績のため、**upstream の変更で上書きしない**。
+
+- `dev-process-improvement/backlog/`
+- `dev-process-improvement/inbox/`
+- `dev-process-improvement/initiatives/`
+- `dev-process-improvement/triage/`
+
+同期手順・Claude への依頼方法: **[docs/sync-guide.md](docs/sync-guide.md)**
+
+---
+
 ## セットアップ
 
 開発を始める前に、必要なツールが揃っているか確認してください。
