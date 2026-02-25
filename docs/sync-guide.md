@@ -5,10 +5,12 @@
 本リポジトリは外部リポジトリ(upstream)を社内リポジトリ(origin)へ疑似フォークして運用している。
 upstream の最新変更を定期的に取り込みながら、社内固有の作業実績ディレクトリは upstream の変更で上書きしない仕組みを整備している。
 
-| リモート名 | URL | 役割 |
-|-----------|-----|------|
-| `upstream` | `https://github.com/ryo12-n/ai-driven-dev-patterns.git` | 取り込み元（外部） |
-| `origin` | `https://github.com/ryo-nagata_monotaro/ai-driven-dev-patterns-fork.git` | 社内管理先 |
+| リモート名 | 役割 |
+|-----------|------|
+| `upstream` | 取り込み元（外部リポジトリ） |
+| `origin` | 自組織の管理先リポジトリ |
+
+設定済みのリモートは `git remote -v` で確認できる。
 
 ---
 
@@ -37,7 +39,7 @@ upstream 側にも独自コンテンツが存在するが、取り組む内容�
 ### 実行手順
 
 ```bash
-cd ~/projects/m6o-es-product-api_dev_process_improvement/ai-driven-dev-patterns
+cd <このリポジトリのローカルパス>
 
 # 1. 未コミット変更がないことを確認
 git status
@@ -81,7 +83,7 @@ Claude に依頼する際は、以下のプロンプトを使うとルールフ�
 以下どちらのディレクトリから `claude` を起動した場合でも、上記プロンプトで対応できる。
 
 - `ai-driven-dev-patterns/`（リポジトリルート）
-- `m6o-es-product-api_dev_process_improvement/`（親ディレクトリ）
+- このリポジトリの親ディレクトリ
 
 ---
 

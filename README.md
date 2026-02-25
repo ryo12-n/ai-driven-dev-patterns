@@ -1,10 +1,10 @@
 # ai-driven-dev-patterns
 
-> **このリポジトリについて**
+> **疑似フォーク運用について**
 >
-> [`ryo12-n/ai-driven-dev-patterns`](https://github.com/ryo12-n/ai-driven-dev-patterns) を社内 Enterprise へ取り込んだ疑似フォークです。
-> GitHub のフォーク機能は使わず、upstream/origin の2リモート管理方式で運用しています。
-> 取り込みの背景・手順・振り返りは[作業履歴](https://github.com/ryo-nagata_monotaro/my_work/blob/main/Tips/GitHub/2_%E5%A4%96%E9%83%A8%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%8B%E3%82%89%E7%A4%BE%E5%86%85%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%B8%E7%96%91%E4%BC%BC%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF/%E4%BD%9C%E6%A5%AD%E5%B1%A5%E6%AD%B4.md)を参照。
+> このリポジトリを社内 Enterprise へ取り込む場合、GitHub のフォーク機能は使わず、
+> upstream/origin の2リモート管理方式（疑似フォーク）での運用を推奨しています。
+> 同期手順は [docs/sync-guide.md](docs/sync-guide.md) を参照してください。
 
 ---
 
