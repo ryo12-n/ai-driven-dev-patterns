@@ -60,6 +60,35 @@ git diff origin/main     # push 前の差分確認
 git push origin main     # ユーザー承認後に実行
 ```
 
+## upstream への push
+
+origin の変更を upstream にも反映する場合の手順。
+upstream のリポジトリオーナーアカウントへの切り替えが必要。
+
+### gh アカウントの確認
+
+```bash
+gh auth status
+```
+
+`upstream` リモートのオーナーアカウントが `Active account: false` で登録済みであることを確認する。
+未登録の場合は `gh auth login` で追加する（ブラウザ認証はシークレットウィンドウで対象アカウントにログインしてから行うこと）。
+
+### 実行手順
+
+**ユーザーの確認を得てから実行すること。自動実行しない。**
+
+```bash
+# 1. upstream オーナーアカウントに切り替え
+gh auth switch --user <upstream-owner-account>
+
+# 2. upstream に push
+git push upstream main
+
+# 3. 元のアカウントに戻す
+gh auth switch --user <origin-account>
+```
+
 ## トラブルシューティング
 
 ### 保護対象外のコンフリクトが発生した場合

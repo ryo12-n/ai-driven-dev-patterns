@@ -87,6 +87,40 @@ Claude に依頼する際は、以下のプロンプトを使うとルールフ�
 
 ---
 
+## upstream への push
+
+origin の変更を upstream にも反映したい場合の手順。
+`gh` CLI でアカウントを切り替えてから push する。
+
+### 前提
+
+- upstream のリポジトリオーナーアカウントが `gh auth status` に登録済みであること
+- 未登録の場合は `gh auth login` で追加する（ブラウザ認証はシークレットウィンドウで対象アカウントにログインしてから行う）
+
+### 手順
+
+```bash
+# 1. 登録済みアカウントを確認
+gh auth status
+
+# 2. upstream オーナーアカウントに切り替え
+gh auth switch --user <upstream-owner-account>
+
+# 3. upstream に push
+git push upstream main
+
+# 4. 元のアカウントに戻す
+gh auth switch --user <origin-account>
+```
+
+### Claude に依頼する場合
+
+```
+.claude/rules/sync.md に従って upstream に push してください。
+```
+
+---
+
 ## トラブルシューティング
 
 ### 未コミット変更があってスクリプトが中断した
