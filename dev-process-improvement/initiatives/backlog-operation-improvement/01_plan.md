@@ -18,7 +18,7 @@
 
 ## リソース・前提条件
 
-- 移行対象: `backlog/ideas.md` のうち initiative 未開始の施策（現在7件）
+- 移行対象: `backlog/ideas.md` のうち initiative 未開始の施策（現在5件）
 - initiative 開始済み施策（role-agent-prompts, dev-setup-knowledge, openspec-process-integration, readme-improvement）は移行対象外
 - ルールファイル更新時は `docs/workflow.md` も合わせて更新する（ドキュメント整合性ルール）
 
