@@ -12,7 +12,7 @@ paths: "initiatives/**/00_proposal.md,initiatives/**/01_plan.md,initiatives/**/0
 
 ### パターン1: `backlog: <施策名>`
 
-新施策を開始する。下記「新施策の開始手順」に従い、`_template` のコピーから開始する。
+新施策を開始する。`backlog/<施策名>.md` の内容（課題・背景、期待効果、優先度）を参照し、下記「新施策の開始手順」に従い、`_template` のコピーから開始する。
 
 ### パターン2: `施策: <パス>`
 

@@ -42,7 +42,7 @@
 4. 作業履歴      → triage/YYYYMMDD/02_work_log.md に記録
 5. レポート作成  → triage/YYYYMMDD/03_report.md を作成 → PR として提出
 6. ユーザーレビュー
-7. backlog 反映  → 承認後に backlog/ideas.md を更新
+7. backlog 反映  → 承認後に backlog/ へ個別ファイルを作成（`_template.md` をコピー）
 8. 後処理        → 処理済み inbox アイテムを削除（git 履歴が証跡）
 9. 課題起票      → 課題と確定したものを プロセス改善_課題管理.csv に直接起票
 ```
