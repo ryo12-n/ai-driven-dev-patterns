@@ -8,8 +8,7 @@
 
 ## 申し送り事項
 
-- `dev-setup-knowledge` の正式クローズを実施する（ユーザー承認後）。クローズ手順は「initiative 終了後の扱い整理」施策が未実施のため、暫定的にステータス更新のみとする
-- backlog 追加候補（worktree 標準化、Devin ルール適用）が承認された場合、次回から棚卸し対象として確認する
+- backlog 追加4件（worktree 標準化、Devin ルール適用、Boris式ルール、openspec実装試験）が登録されたため、次回から棚卸し対象として確認する
 - ISS-008〜012（workflow.md 乖離の MEDIUM/LOW 5件）の対応方針を確定する
 
 ## 処理指示
