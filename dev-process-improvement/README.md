@@ -104,10 +104,8 @@ dev-process-improvement/.claude/rules/l1-manager.md に従う
 inbox・backlog・課題管理CSVを走査・整理する定期メンテナンスセッション。
 施策を「作る・動かす」のではなく、積み上がったアイテムを「捌く・整理する」ことが目的。
 
-```bash
-cd dev-process-improvement
-claude
-# → 「あなたはトリアージセッションです。.claude/rules/triage.mdに従ってください。」
+```
+「あなたはトリアージセッションです。dev-process-improvement/.claude/rules/triage.mdに従ってください。」
 ```
 
 ---
