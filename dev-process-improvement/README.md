@@ -82,14 +82,14 @@ L1がサブエージェント（Taskツール）としてL2を順番に起動・
 **新施策を開始する**
 
 ```
-.claude/rules/l1-manager.md に従う
+dev-process-improvement/.claude/rules/l1-manager.md に従う
 backlog: <施策名>
 ```
 
 **既存施策を継続する**
 
 ```
-.claude/rules/l1-manager.md に従う
+dev-process-improvement/.claude/rules/l1-manager.md に従う
 施策: initiatives/<フォルダ名>/
 ```
 
