@@ -33,6 +33,21 @@ paths: "triage/**/*.md"
 | `プロセス改善_課題管理.csv` | ✏️ 直接起票（トリアージで発見した課題） |
 | `docs/collab-log.md` | ✏️ 未蒸留エントリを読み取り・蒸留判断・蒸留済エントリの削除 |
 
+## やること
+
+- `triage/YYYYMMDD/` フォルダを作成してセッションを記録する
+- inbox / backlog / CSV / initiatives / `.claude/rules/*.md` / `docs/` を走査・整理する
+- `docs/collab-log.md` の未蒸留エントリを確認し、必要に応じてルール・docs に反映する
+- 発見した課題を `プロセス改善_課題管理.csv` に直接起票する
+- `03_report.md` を作成し、PR として提出してユーザーにレビューを依頼する
+
+## やらないこと
+
+- L1・L2 の成果物（`initiatives/` 配下）は編集しない（読み取りのみ）
+- backlog の変更はユーザーレビュー前に行わない
+- `07_issues.md` のような中間バッファを経由しない（課題は CSV に直接起票する）
+- `refs/` の本体ファイルは削除しない（対応する `inbox/ref_*.md` のみ削除可）
+
 ## ルール
 
 - `00_pre_investigation.md` の調査を必ず完了させてから `01_plan.md` を書く
