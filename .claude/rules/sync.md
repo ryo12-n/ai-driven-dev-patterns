@@ -16,15 +16,6 @@ upstream（外部リポジトリ）から origin（社内リポジトリ）へ�
 
 設定されているリモートは `git remote -v` で確認できる。
 
-## 保護対象ディレクトリ（upstream から同期しない）
-
-以下の4ディレクトリは origin 固有の作業実績であり、upstream の変更で上書きしてはならない。
-
-- `dev-process-improvement/backlog/`
-- `dev-process-improvement/inbox/`
-- `dev-process-improvement/initiatives/`
-- `dev-process-improvement/triage/`
-
 ## 同期手順
 
 ### 前提条件
@@ -42,12 +33,9 @@ bash scripts/sync-upstream.sh
 ### スクリプトの処理内容
 
 1. 未コミット変更の検出 → あれば中断
-2. 保護対象4ディレクトリを一時バックアップ
-3. `git fetch upstream`
-4. `git merge upstream/main`（保護対象のコンフリクトは自動で ours を採用）
-5. 保護対象ディレクトリをバックアップから復元
-6. 復元による差分があればコミット
-7. 完了メッセージ表示（push はしない）
+2. `git fetch upstream`
+3. `git merge upstream/main`（コンフリクトが発生した場合はエラーで中断）
+4. 完了メッセージ表示（push はしない）
 
 ### 同期後の確認と push
 
@@ -91,7 +79,7 @@ gh auth switch --user <origin-account>
 
 ## トラブルシューティング
 
-### 保護対象外のコンフリクトが発生した場合
+### コンフリクトが発生した場合
 
 スクリプトはエラーで中断する。対象ファイルを手動でコンフリクト解消してから以下を実行:
 

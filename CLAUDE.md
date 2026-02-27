@@ -48,16 +48,7 @@
 ## upstream 同期ポリシー
 
 本リポジトリは **外部リポジトリ(upstream)を社内リポジトリ(origin)へ疑似フォーク**して運用している。
-upstream の最新変更を取り込む際、以下のディレクトリは **origin 固有の作業実績** であるため、upstream の変更で上書きしてはならない。
-
-### 保護対象ディレクトリ（upstream から同期しない）
-
-- `dev-process-improvement/backlog/`
-- `dev-process-improvement/inbox/`
-- `dev-process-improvement/initiatives/`
-- `dev-process-improvement/triage/`
-
-upstream merge を実施する際は、必ずこれら4ディレクトリを保護すること。
+upstream の最新変更を取り込む際は完全同期とする。
 詳細な手順・スクリプトの使い方は `.claude/rules/sync.md` を参照すること。
 
 ---
