@@ -64,6 +64,8 @@ L1 は L2 を **Task ツール（サブエージェント）** として順番�
 2. 実施計画作成  → triage/YYYYMMDD/01_plan.md を作成
                    （今回の重点・走査タスクを決める）
 3. 実施          → inbox / backlog / CSV を走査・分類
+                   ・完了済み initiative（ゲート通過済み・未アーカイブ）を検出し、
+                     クローズチェックリスト検証後にアーカイブ対象としてレポートに記載
 4. 作業履歴      → triage/YYYYMMDD/02_work_log.md に記録
 5. レポート作成  → triage/YYYYMMDD/03_report.md を作成 → PR として提出
 6. ユーザーレビュー
