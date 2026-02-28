@@ -13,20 +13,20 @@
 
 | ID | タスク | 完了条件 | 優先度 | ステータス |
 |----|--------|---------|--------|-----------|
-| T-001 | Go 開発環境を確認する（`go version` の実行、GOPATH 等の確認） | `go version` が Go 1.21 以上を返すこと。未インストールの場合は `07_issues.md` に起票して報告 | 🔴 | ⬜ |
-| T-002 | `/opsx:new` で openspec の change を作成する。change 名は `add-sample-go-cli` とする | `openspec/changes/add-sample-go-cli/` ディレクトリが作成されている | 🔴 | ⬜ |
-| T-003 | `/opsx:continue` を繰り返して（または `/opsx:ff` で一括生成して）成果物一式を生成する。サンプルアプリの題材は「マークダウンファイルの見出し一覧を出力する CLI ツール」とする | `proposal.md`、`specs/<domain>/spec.md`、`design.md`、`tasks.md` の4成果物が揃っていること | 🔴 | ⬜ |
+| T-001 | Go 開発環境を確認する（`go version` の実行、GOPATH 等の確認） | `go version` が Go 1.21 以上を返すこと。未インストールの場合は `07_issues.md` に起票して報告 | 🔴 | ✅ |
+| T-002 | `/opsx:new` で openspec の change を作成する。change 名は `add-sample-go-cli` とする | `openspec/changes/add-sample-go-cli/` ディレクトリが作成されている | 🔴 | ✅ |
+| T-003 | `/opsx:continue` を繰り返して（または `/opsx:ff` で一括生成して）成果物一式を生成する。サンプルアプリの題材は「マークダウンファイルの見出し一覧を出力する CLI ツール」とする | `proposal.md`、`specs/<domain>/spec.md`、`design.md`、`tasks.md` の4成果物が揃っていること | 🔴 | ✅ |
 
 ### フェーズ2: コード実装・検証
 
 | ID | タスク | 完了条件 | 優先度 | ステータス |
 |----|--------|---------|--------|-----------|
-| T-004 | `/opsx:apply` で tasks.md に基づいて Go コードを `src/` に実装する | `tasks.md` の全タスクにチェックが入っていること。`src/` に Go ソースコードが存在すること | 🔴 | ⬜ |
-| T-005 | `go build` と `go test` を実行して動作確認する | ビルドが成功し、テストが全てパスすること。結果を `03_work_log.md` に記録 | 🔴 | ⬜ |
-| T-006 | `/opsx:verify` で成果物の整合性を検証する | verify の結果（Completeness, Correctness, Coherence）を `03_work_log.md` に記録していること | 🟡 | ⬜ |
-| T-007 | `/opsx:archive` で delta spec をマージし change をアーカイブする | `openspec/specs/` に delta spec が反映され、change が `archive/` に移動していること | 🟡 | ⬜ |
-| T-008 | openspec × 実コード生成のプロセス知見を記録する。以下の観点で `04_work_report.md` に記載する：(1) specs が実装の指針としてどの程度機能したか、(2) apply フェーズの実行結果と改善点、(3) 全体サイクルのボトルネック | 3観点すべてについて具体的な記載があること | 🔴 | ⬜ |
-| T-009 | `07_issues.md` の未転記課題を確認し、施策をまたぐ課題を `プロセス改善_課題管理.csv` へ転記する | 全課題に `[転記済 ISS-XXX]` または「転記不要」の判断が付いていること | 🔴 | ⬜ |
+| T-004 | `/opsx:apply` で tasks.md に基づいて Go コードを `src/` に実装する | `tasks.md` の全タスクにチェックが入っていること。`src/` に Go ソースコードが存在すること | 🔴 | ✅ |
+| T-005 | `go build` と `go test` を実行して動作確認する | ビルドが成功し、テストが全てパスすること。結果を `03_work_log.md` に記録 | 🔴 | ✅ |
+| T-006 | `/opsx:verify` で成果物の整合性を検証する | verify の結果（Completeness, Correctness, Coherence）を `03_work_log.md` に記録していること | 🟡 | ✅ |
+| T-007 | `/opsx:archive` で delta spec をマージし change をアーカイブする | `openspec/specs/` に delta spec が反映され、change が `archive/` に移動していること | 🟡 | ✅ |
+| T-008 | openspec × 実コード生成のプロセス知見を記録する。以下の観点で `04_work_report.md` に記載する：(1) specs が実装の指針としてどの程度機能したか、(2) apply フェーズの実行結果と改善点、(3) 全体サイクルのボトルネック | 3観点すべてについて具体的な記載があること | 🔴 | ✅ |
+| T-009 | `07_issues.md` の未転記課題を確認し、施策をまたぐ課題を `プロセス改善_課題管理.csv` へ転記する | 全課題に `[転記済 ISS-XXX]` または「転記不要」の判断が付いていること | 🔴 | ✅ |
 
 ---
 
