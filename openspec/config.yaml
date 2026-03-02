@@ -17,7 +17,6 @@ context: |
     - commands/opsx/   : /opsx:* スラッシュコマンド（openspec init が生成）
     - skills/          : OpenSpec スキル（openspec init が生成）
     - rules/           : パス条件付きルール（design-doc.md, code-in-docs.md）
-  - dev-process-improvement/ : 開発プロセス改善の施策管理
 
   ## 命名規約
   - change 名: kebab-case（例: add-user-profile, setup-auth）

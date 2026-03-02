@@ -362,7 +362,7 @@ CLAUDE.md は全レベルが**加算的**に読み込まれる。矛盾する指
 CLAUDE.md                      # プロジェクトメモリ（ルート）
 ```
 
-また `dev-process-improvement/.claude/rules/` に4つのロール定義ファイル（l1-manager.md, l2-worker.md, l2-evaluator.md, triage.md）、リポジトリルートの `roles/` ディレクトリに7つのロール定義がある。
+またリポジトリルートの `roles/` ディレクトリに7つのロール定義がある。
 
 ### 4.2 差異分析
 

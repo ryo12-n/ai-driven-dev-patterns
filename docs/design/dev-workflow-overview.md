@@ -4,7 +4,7 @@
 
 本ドキュメントは、`roles/` 配下の既存7ロール（feature_builder, test_writer, reviewer, bug_fixer, refactorer, optimizer, documentarian）を活用したコード開発ワークフローの概念設計をまとめたものである。
 
-施策管理ワークフロー（dev-process-improvement の L1/L2）とは独立した仕組みとして、コード開発セッションにおけるロールの連携・起動順序・データフローを定義する。
+施策管理ワークフロー（[ryo12-n/dev-process-improvement](https://github.com/ryo12-n/dev-process-improvement) の L1/L2、外部リポジトリで管理）とは独立した仕組みとして、コード開発セッションにおけるロールの連携・起動順序・データフローを定義する。
 
 **本ドキュメントの位置づけ**: 探索フェーズ（フェーズ1）の概要設計。後続のフェーズ2でシナリオ別詳細設計に発展させる。
 
@@ -122,7 +122,7 @@ flowchart TD
 | **エントリーポイント** | L1 マネージャーセッション | 人間 → ディスパッチャー → dev_manager |
 | **マネージャー** | L1（施策管理マネージャー） | dev_manager（開発マネージャー） |
 | **ワーカー** | L2-worker（汎用実施）、L2-evaluator（評価） | 7つの専門ロール（feature_builder 等） |
-| **活動ディレクトリ** | `dev-process-improvement/initiatives/` | `src/`, `tests/`, `docs/`, `openspec/`, `sessions/` |
+| **活動ディレクトリ** | 外部リポジトリ [`ryo12-n/dev-process-improvement`](https://github.com/ryo12-n/dev-process-improvement) の `initiatives/` | `src/`, `tests/`, `docs/`, `openspec/`, `sessions/` |
 | **管理ファイル** | 00_proposal 〜 08_gate_review | sessions/ 配下の 4ファイル（plan/log/report/issues）、git コミット履歴 |
 | **品質ゲート** | L2-evaluator による評価 → L1 ゲート判定 | reviewer によるコードレビュー → dev_manager 判定 |
 | **フロー制御** | フェーズゲート方式（通過/条件付き/差し戻し） | ロール間の順次起動（レビュー不合格時の差し戻しあり） |
