@@ -155,10 +155,14 @@ graph TB
 | | レビュー結果（問題リスト・総合判定） | Reviewing ステージ | reviewer の完了報告に記録 |
 | | エスカレーション履歴 | エスカレーション発生時 | ブロック報告として記録 |
 | | 差し戻し履歴（回数・理由） | 差し戻し発生時 | dev_manager のコンテキスト内に蓄積 |
-| **セッション作業履歴** | 壁打ち記録・実施計画（plan.md） | セッション開始時（Initializing/Planning） | `sessions/<session-name>/plan.md` にファイルとして保存、git コミット |
+| **セッション作業履歴（dev_manager 層）** | 壁打ち記録・実施計画（plan.md） | セッション開始時（Initializing/Planning） | `sessions/<session-name>/plan.md` にファイルとして保存、git コミット |
 | | 作業ログ（log.md） | 作業の区切りごと（Executing 中随時） | `sessions/<session-name>/log.md` にファイルとして保存、git コミット |
 | | 完了レポート（report.md） | セッション完了時（Completed） | `sessions/<session-name>/report.md` にファイルとして保存、git コミット |
 | | 課題バッファ（issues.md） | 課題発見時（随時） | `sessions/<session-name>/issues.md` にファイルとして保存、git コミット |
+| **セッション作業履歴（専門ロール層）** | 壁打ち記録・実施計画（plan.md） | ロール起動時 | `sessions/<session-name>/<role-name>/plan.md` にファイルとして保存、git コミット |
+| | 作業ログ（log.md） | 作業の区切りごと（ロール作業中随時） | `sessions/<session-name>/<role-name>/log.md` にファイルとして保存、git コミット |
+| | 完了レポート（report.md） | ロール作業完了時 | `sessions/<session-name>/<role-name>/report.md` にファイルとして保存、git コミット |
+| | 課題バッファ（issues.md） | 課題発見時（随時） | `sessions/<session-name>/<role-name>/issues.md` にファイルとして保存、git コミット |
 
 #### 11.1.2 永続化方式の選択基準
 
@@ -175,7 +179,7 @@ flowchart TD
 | 永続化方式 | 特性 | 適用場面 |
 |-----------|------|---------|
 | **git コミット** | 永続的・差分追跡可能・ブランチ管理可能 | コード変更、ドキュメント変更 |
-| **セッション作業ファイル** | 永続的・セッション間で参照可能・構造化された4ファイル | セッションの壁打ち・計画・作業ログ・完了レポート・課題記録。`sessions/<session-name>/` 配下に配置し、git コミットで永続化 |
+| **セッション作業ファイル** | 永続的・セッション間で参照可能・構造化された4ファイル | セッションの壁打ち・計画・作業ログ・完了レポート・課題記録。`sessions/<session-name>/` 配下に階層的に配置し、git コミットで永続化。dev_manager がセッションルートの4ファイルを管理し、各専門ロールはサブディレクトリ（`<role-name>/`）で独自の4ファイルを管理する |
 | **完了報告ファイル** | セッション間で参照可能・人間可読 | 開発セッション→評価セッションの引き渡し、人間への報告 |
 | **セッションコンテキスト** | セッション内でのみ有効・低コスト | dev_manager の進捗管理、差し戻しカウンター |
 
@@ -185,7 +189,29 @@ flowchart TD
 2. **判断履歴は完了報告に集約**: TDD判断・レビュー結果・エスカレーション履歴は dev_manager の最終完了報告に含める。後続セッション（特にシナリオ3: 独立評価）が参照可能にする
 3. **セッション状態は復元可能にする**: Blocked からの回復時（[§2.2.6](session-flow-foundations.md#226-blocked状態遷移と回復)）に前回のコンテキストを復元できるよう、ブロック報告に十分な情報を含める
 4. **冪等性の確保**: [§2.3](session-flow-foundations.md#23-設計原則) の設計原則に従い、永続化操作は冪等であること。git コミットの重複防止、ドキュメント更新の競合解消手段を設ける
-5. **セッション作業履歴は sessions/ で永続化**: 全セッションの作業プロセス（壁打ち・計画・作業ログ・完了レポート・課題）は `sessions/<session-name>/` 配下の4ファイル（plan.md / log.md / report.md / issues.md）に記録し、git コミットで永続化する。これによりコンテキスト切れ時のセッション復旧が可能になり、セッション間のトレーサビリティが確保される。テンプレートは `sessions/_template/` に配置する
+5. **セッション作業履歴は sessions/ で永続化**: 全セッションの作業プロセスは `sessions/<session-name>/` 配下に階層的に記録し、git コミットで永続化する。これによりコンテキスト切れ時のセッション復旧が可能になり、セッション間のトレーサビリティが確保される。テンプレートは `sessions/_template/` に配置する
+
+   **階層構造**:
+   ```
+   sessions/<session-name>/
+   ├── plan.md               # dev_manager: オーケストレーション計画・壁打ち
+   ├── log.md                # dev_manager: ロール起動・判断の経過記録
+   ├── report.md             # dev_manager: L1 向け完了報告
+   ├── issues.md             # dev_manager: セッション全体の課題管理
+   ├── feature_builder/      # 専門ロールのセッション作業履歴
+   │   ├── plan.md
+   │   ├── log.md
+   │   ├── report.md
+   │   └── issues.md
+   ├── test_writer/
+   │   └── （同構造）
+   └── reviewer/
+       └── （同構造）
+   ```
+
+   - **セッションルート（dev_manager 層）**: dev_manager がセッション全体のオーケストレーション記録を管理する。セッション名は `{シナリオ名}_{タスク名}` とする（例: `development_implement-login`）
+   - **サブディレクトリ（専門ロール層）**: 各専門ロールが起動時に自身のサブディレクトリ（`<role-name>/`）を作成し、4ファイルで作業履歴を記録する
+   - **責務分界**: dev_manager はセッションルートの4ファイルのみを管理し、専門ロールのサブディレクトリには書き込まない。専門ロールも自身のサブディレクトリ以外には書き込まない
 
 ### 11.2 コンテキスト引き継ぎ
 
