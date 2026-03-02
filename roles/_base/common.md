@@ -81,15 +81,14 @@ ai-driven-dev-patterns/          # リポジトリルート
 │   ├── feature_builder.md
 │   ├── bug_fixer.md
 │   └── ...
-├── sessions/                    # セッション作業履歴
-│   ├── _template/               # テンプレート（plan.md / log.md / report.md / issues.md）
-│   └── {シナリオ名}_{タスク名}/   # 各セッションのディレクトリ
-│       ├── plan.md              # dev_manager のオーケストレーション計画
-│       ├── log.md               # dev_manager の経過記録
-│       ├── report.md            # dev_manager の完了報告
-│       ├── issues.md            # dev_manager の課題管理
-│       └── {role_name}/         # 専門ロールの作業履歴（4ファイル同構造）
-└── dev-process-improvement/     # 開発プロセス改善施策管理
+└── sessions/                    # セッション作業履歴
+    ├── _template/               # テンプレート（plan.md / log.md / report.md / issues.md）
+    └── {シナリオ名}_{タスク名}/   # 各セッションのディレクトリ
+        ├── plan.md              # dev_manager のオーケストレーション計画
+        ├── log.md               # dev_manager の経過記録
+        ├── report.md            # dev_manager の完了報告
+        ├── issues.md            # dev_manager の課題管理
+        └── {role_name}/         # 専門ロールの作業履歴（4ファイル同構造）
 ```
 
 ### 各ディレクトリの役割

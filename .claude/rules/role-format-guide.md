@@ -5,7 +5,6 @@
 **目的**: ロール定義ファイルの構成を統一し、Claude がロールのスコープ・作業フロー・制約を素早く把握できるようにする。
 
 **適用対象**:
-- `dev-process-improvement/.claude/rules/*.md` — プロセス改善システムのロール（l1-manager, l2-worker, l2-evaluator, triage）
 - `roles/*.md` — ai-driven-dev-patterns のエージェントロール（bug_fixer, reviewer など）
 
 新しいロール定義ファイルを作成する際は、このガイドを雛形として使うこと。
