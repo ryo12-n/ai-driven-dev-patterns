@@ -1,18 +1,26 @@
-# upstream 同期ルール
+# 双方向同期ルール
 
 ## このルールファイルの用途
 
-upstream（外部リポジトリ）から origin（社内リポジトリ）へ同期する作業を依頼された際に参照すること。
+origin（社内リポジトリ）と upstream（外部リポジトリ）の双方向同期を依頼された際に参照すること。
 通常の開発作業では参照不要。
+
+## 基本方針
+
+origin と upstream の main ブランチは**常に同一コミットを維持する（完全同期）**。
+
+**競合回避の核心原則**: 「片方で PR マージ → もう片方へ fast-forward push」
+
+- origin と upstream で同時に PR をマージしない
+- PR マージ後は速やかにもう片方へ同期する
+- 同時マージが発生した場合は下記「同時マージが発生した場合の対処」を参照
 
 ## リポジトリの構成
 
-本リポジトリは **外部リポジトリ(upstream)を社内リポジトリ(origin)へ疑似フォークして運用**している。
-
 | リモート名 | 役割 |
 |-----------|------|
-| `upstream` | 取り込み元（外部リポジトリ） |
-| `origin` | 自組織の管理先リポジトリ |
+| `upstream` | 外部リポジトリ (ryo12-n/ai-driven-dev-patterns) |
+| `origin` | 社内リポジトリ (ryo-nagata_monotaro/ai-driven-dev-patterns-fork) |
 
 設定されているリモートは `git remote -v` で確認できる。
 
@@ -23,76 +31,93 @@ upstream（外部リポジトリ）から origin（社内リポジトリ）へ�
 - 実行前にすべての変更がコミット済みであること
 - リポジトリルートで実行すること
 
-### 実行コマンド
+### パターン A: upstream → origin（upstream で PR マージした場合）
 
 ```bash
-cd <このリポジトリのローカルパス>
-bash scripts/sync-upstream.sh
+bash scripts/sync.sh upstream-to-origin
 ```
 
-### スクリプトの処理内容
-
-1. 未コミット変更の検出 → あれば中断
+スクリプトの処理:
+1. 未コミット変更の確認
 2. `git fetch upstream`
-3. `git merge upstream/main`（コンフリクトが発生した場合はエラーで中断）
+3. `git merge --ff-only upstream/main`
 4. 完了メッセージ表示（push はしない）
 
-### 同期後の確認と push
-
-スクリプト完了後、ユーザーに以下を確認してもらってから push すること。
-**push は自動実行しない。必ずユーザーの確認を待つこと。**
-
+同期後の確認と push:
 ```bash
-git log --oneline -5     # コミット履歴の確認
-git diff origin/main     # push 前の差分確認
-git push origin main     # ユーザー承認後に実行
+git log --oneline -5
+git diff origin/main
+git push origin main   # ユーザー承認後に実行
 ```
 
-## upstream への push
+### パターン B: origin → upstream（origin で PR マージした場合）
 
-origin の変更を upstream にも反映する場合の手順。
-upstream のリポジトリオーナーアカウントへの切り替えが必要。
+```bash
+bash scripts/sync.sh origin-to-upstream
+```
 
-### gh アカウントの確認
+スクリプトの処理:
+1. 未コミット変更の確認
+2. `git fetch origin`
+3. `git merge --ff-only origin/main`
+4. `gh auth switch --user ryo12-n`（push 用アカウントに切り替え）
+5. 完了メッセージ表示（push はしない）
+
+同期後の確認と push:
+```bash
+git log --oneline -5
+git diff upstream/main
+git push upstream main                    # ユーザー承認後に実行
+gh auth switch --user ryo-nagata_monotaro # push 後にアカウントを元に戻す
+```
+
+**push は自動実行しない。必ずユーザーの確認を待つこと。**
+
+## 同時マージが発生した場合の対処
+
+万一、両方のリポジトリで同時に PR をマージしてしまい fast-forward できない場合:
+
+```bash
+# 1. どちらか一方をベースに merge コミットを作成
+git fetch upstream
+git fetch origin
+git merge upstream/main   # コンフリクトがあれば手動解消
+
+# 2. 解消後、両方のリモートに push して同期を回復
+git push origin main
+gh auth switch --user ryo12-n
+git push upstream main
+gh auth switch --user ryo-nagata_monotaro
+```
+
+merge コミットが生まれることを許容する。
+
+## gh アカウントの確認
 
 ```bash
 gh auth status
 ```
 
-`upstream` リモートのオーナーアカウントが `Active account: false` で登録済みであることを確認する。
-未登録の場合は `gh auth login` で追加する（ブラウザ認証はシークレットウィンドウで対象アカウントにログインしてから行うこと）。
-
-### 実行手順
-
-**ユーザーの確認を得てから実行すること。自動実行しない。**
-
-```bash
-# 1. upstream オーナーアカウントに切り替え
-gh auth switch --user <upstream-owner-account>
-
-# 2. upstream に push
-git push upstream main
-
-# 3. 元のアカウントに戻す
-gh auth switch --user <origin-account>
-```
+`ryo12-n` が `Active account: false` で登録済みであることを確認する。
+未登録の場合は `gh auth login` で追加する（ブラウザ認証はシークレットウィンドウで対象アカウントにログインしてから行う）。
 
 ## トラブルシューティング
 
-### コンフリクトが発生した場合
-
-スクリプトはエラーで中断する。対象ファイルを手動でコンフリクト解消してから以下を実行:
-
-```bash
-git add <解消したファイル>
-git commit --no-edit
-bash scripts/sync-upstream.sh  # 再実行（冪等）
-```
-
-### 未コミット変更がある場合
+### 未コミット変更があってスクリプトが中断した
 
 ```bash
 git add .
-git commit -m "作業内容の説明"
-bash scripts/sync-upstream.sh
+git commit -m "変更内容の説明"
+bash scripts/sync.sh <パターン>
+```
+
+### fast-forward できなかった（同時マージ）
+
+スクリプトがエラーで中断する。上記「同時マージが発生した場合の対処」を参照。
+
+### gh auth switch が失敗した（アカウント未登録）
+
+```bash
+gh auth login   # シークレットウィンドウで ryo12-n アカウントにログインして認証
+bash scripts/sync.sh origin-to-upstream
 ```
