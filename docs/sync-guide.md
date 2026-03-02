@@ -1,16 +1,23 @@
-# upstream 同期ガイド
+# 双方向同期ガイド
 
 ## 背景
 
-本リポジトリは外部リポジトリ(upstream)を社内リポジトリ(origin)へ疑似フォークして運用している。
-upstream の最新変更を定期的に取り込み、完全同期を維持する。
+origin と upstream の main ブランチは**常に同一コミットを維持する（完全同期）**。
 
 | リモート名 | 役割 |
 |-----------|------|
-| `upstream` | 取り込み元（外部リポジトリ） |
-| `origin` | 自組織の管理先リポジトリ |
+| `upstream` | 外部リポジトリ (ryo12-n/ai-driven-dev-patterns) |
+| `origin` | 社内リポジトリ (ryo-nagata_monotaro/ai-driven-dev-patterns-fork) |
 
 設定済みのリモートは `git remote -v` で確認できる。
+
+---
+
+## 運用ルール
+
+- **origin と upstream で同時に PR をマージしない**
+- PR マージ後は速やかにもう片方へ同期する
+- 同時マージが発生した場合は `.claude/rules/sync.md` の対処手順を参照
 
 ---
 
@@ -21,23 +28,39 @@ upstream の最新変更を定期的に取り込み、完全同期を維持す�
 - 実行前にすべての変更をコミットしておくこと
 - リポジトリルート（`ai-driven-dev-patterns/`）で実行すること
 
-### 実行手順
+---
+
+### パターン A: upstream → origin（upstream で PR マージした場合）
 
 ```bash
-cd <このリポジトリのローカルパス>
+# 1. 同期スクリプトを実行
+bash scripts/sync.sh upstream-to-origin
 
-# 1. 未コミット変更がないことを確認
-git status
-
-# 2. 同期スクリプトを実行
-bash scripts/sync-upstream.sh
-
-# 3. 結果を確認
+# 2. 結果を確認
 git log --oneline -5
 git diff origin/main
 
-# 4. 問題なければ push（スクリプトは push しない）
+# 3. 問題なければ push
 git push origin main
+```
+
+---
+
+### パターン B: origin → upstream（origin で PR マージした場合）
+
+```bash
+# 1. 同期スクリプトを実行（ryo12-n へのアカウント切り替えも自動実行）
+bash scripts/sync.sh origin-to-upstream
+
+# 2. 結果を確認
+git log --oneline -5
+git diff upstream/main
+
+# 3. 問題なければ push
+git push upstream main
+
+# 4. アカウントを元に戻す
+gh auth switch --user ryo-nagata_monotaro
 ```
 
 ---
@@ -46,63 +69,17 @@ git push origin main
 
 ### 依頼フレーズ（自由な日本語で OK）
 
-以下のような表現で依頼できる。
-
-- 「upstream を同期して」
-- 「upstream の最新を取り込んで」
-- 「外部リポジトリの変更を取り込んで」
+- 「upstream を同期して」（upstream → origin）
+- 「origin の変更を upstream に反映して」（origin → upstream）
+- 「upstream に push して」（origin → upstream）
 
 ### 推奨プロンプトテンプレート
 
-Claude に依頼する際は、以下のプロンプトを使うとルールファイルを確実に参照させることができる。
-
 ```
-.claude/rules/sync.md に従って upstream を同期してください。
+.claude/rules/sync.md に従って [upstream-to-origin / origin-to-upstream] で同期してください。
 ```
 
 > **補足**: このプロンプトにより Claude は `.claude/rules/sync.md` を読んでから作業を開始する。
-> スクリプトパス・push前確認ポリシーがルールファイルに記載されている。
-
-### どのディレクトリから依頼してもよい
-
-以下どちらのディレクトリから `claude` を起動した場合でも、上記プロンプトで対応できる。
-
-- `ai-driven-dev-patterns/`（リポジトリルート）
-- このリポジトリの親ディレクトリ
-
----
-
-## upstream への push
-
-origin の変更を upstream にも反映したい場合の手順。
-`gh` CLI でアカウントを切り替えてから push する。
-
-### 前提
-
-- upstream のリポジトリオーナーアカウントが `gh auth status` に登録済みであること
-- 未登録の場合は `gh auth login` で追加する（ブラウザ認証はシークレットウィンドウで対象アカウントにログインしてから行う）
-
-### 手順
-
-```bash
-# 1. 登録済みアカウントを確認
-gh auth status
-
-# 2. upstream オーナーアカウントに切り替え
-gh auth switch --user <upstream-owner-account>
-
-# 3. upstream に push
-git push upstream main
-
-# 4. 元のアカウントに戻す
-gh auth switch --user <origin-account>
-```
-
-### Claude に依頼する場合
-
-```
-.claude/rules/sync.md に従って upstream に push してください。
-```
 
 ---
 
@@ -113,16 +90,10 @@ gh auth switch --user <origin-account>
 ```bash
 git add .
 git commit -m "変更内容の説明"
-bash scripts/sync-upstream.sh
+bash scripts/sync.sh <パターン>
 ```
 
-### コンフリクトが発生した
+### fast-forward できなかった（同時マージ）
 
-スクリプトがコンフリクトファイルのパスを表示して中断する。
-該当ファイルを手動で解消してから以下を実行:
-
-```bash
-git add <解消したファイル>
-git commit --no-edit
-bash scripts/sync-upstream.sh
-```
+スクリプトがエラーメッセージを表示して中断する。
+`.claude/rules/sync.md` の「同時マージが発生した場合の対処」を参照。
