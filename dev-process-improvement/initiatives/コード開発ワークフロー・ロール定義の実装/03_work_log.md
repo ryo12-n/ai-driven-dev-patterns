@@ -141,3 +141,16 @@
 - §5.3にセッション間引き継ぎプロトコル追記案を追加
 **成果物**: `docs/design/dev-workflow-detail.md`（差分更新）
 
+### [2026-03-02 11:40] タスクID: T-005
+**状態**: 完了
+**作業内容**:
+- `.claude/skills/dispatcher/SKILL.md` を新規作成
+- フロントマターにname/description/user-invocable/allowed-toolsを設定
+- 5シナリオ分類テーブルを記載
+- 分類フロー手順（5段階の判定フロー）を記載
+- セッション型レジストリ（シナリオ別ロール構成）を記載
+- セッション起動コンテキストテンプレートを記載
+- 「該当なし」ケースの処理（曖昧さ特定・確認プロンプト・再分類）を記載
+- dev_manager起動手順を記載
+**成果物**: `.claude/skills/dispatcher/SKILL.md`（新規作成）
+
