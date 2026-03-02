@@ -153,6 +153,7 @@ dev_manager がロール起動計画策定時に以下のフローで並列化�
 | `sessions/_template/report.md` | 並列実行統合レポートテンプレート |
 | `docs/design/dev-workflow-detail.md` | 開発ワークフロー内部設計（ロール定義・シナリオ別フロー） |
 | `docs/design/session-flow-scenarios.md` | セッションフローシナリオ設計（5シナリオ定義） |
+| `dev-process-improvement/docs/git-worktree-guideline.md` | Stage 1 調査ガイドライン（worktree 基礎概念、ロックベース比較、L1/L2 ワークフロー影響分析、協調プロトコルとの接続点） |
 
 ---
 
