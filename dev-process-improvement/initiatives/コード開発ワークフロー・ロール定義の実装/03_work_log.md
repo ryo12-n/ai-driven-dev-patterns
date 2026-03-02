@@ -121,3 +121,23 @@
 - §C「設計書の作成・更新」にdesign-doc.mdとcode-in-docs.md参照を強調
 **成果物**: `roles/documentarian.md`（差分更新）
 
+### [2026-03-02 11:25] タスクID: T-004a
+**状態**: 完了
+**作業内容**:
+- `docs/design/dev-workflow-overview.md` の更新
+- §1にsession-operation-flow.md参照リンクを追加
+- §2.1の階層図を更新（人間→ディスパッチャー→dev_managerパスを追加）
+- §3.1の比較表を更新（入力元をディスパッチャー経由に変更）
+- §3.2のシーケンス図を更新（ディスパッチャー参加者を追加）
+**成果物**: `docs/design/dev-workflow-overview.md`（差分更新）
+
+### [2026-03-02 11:30] タスクID: T-004b
+**状態**: 完了
+**作業内容**:
+- `docs/design/dev-workflow-detail.md` の更新
+- §1にsession-operation-flow.md参照リンクを追加
+- §5.2.3のステップ1をディスパッチャー起動に更新
+- §5.1末尾に不足ロール注記（planner/architect, tester/eval_manager）を追加
+- §5.3にセッション間引き継ぎプロトコル追記案を追加
+**成果物**: `docs/design/dev-workflow-detail.md`（差分更新）
+
