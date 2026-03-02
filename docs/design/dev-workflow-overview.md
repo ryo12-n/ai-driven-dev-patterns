@@ -8,6 +8,10 @@
 
 **本ドキュメントの位置づけ**: 探索フェーズ（フェーズ1）の概要設計。後続のフェーズ2でシナリオ別詳細設計に発展させる。
 
+**関連ドキュメント**:
+- `docs/design/dev-workflow-detail.md` — セッション内部の詳細設計（3シナリオ、ロール間連携、ロール修正提案）
+- `docs/design/session-operation-flow.md` — セッション外部の運用フロー設計（ディスパッチャー、5シナリオ、ライフサイクル）
+
 ---
 
 ## 2. ワークフロー全体像
@@ -16,12 +20,13 @@
 
 ```mermaid
 graph TB
-    subgraph "施策管理レイヤー"
-        L1["施策管理 L1<br/>(マネージャー)"]
+    subgraph "エントリーポイント"
+        Human["人間（ユーザー）"]
+        Disp["ディスパッチャー<br/>(シナリオ判定・ルーティング)"]
     end
 
     subgraph "コード開発レイヤー"
-        DM["dev_manager<br/>(開発マネージャー)<br/>【新規ロール】"]
+        DM["dev_manager<br/>(開発マネージャー)"]
 
         subgraph "実装グループ"
             FB["feature_builder<br/>(機能実装)"]
@@ -43,7 +48,8 @@ graph TB
         end
     end
 
-    L1 -->|"開発タスク発行"| DM
+    Human -->|"自然言語入力"| Disp
+    Disp -->|"シナリオ判定・起動コンテキスト"| DM
     DM -->|"タスク分配・起動"| FB
     DM -->|"タスク分配・起動"| BF
     DM -->|"タスク分配・起動"| TW
@@ -51,8 +57,10 @@ graph TB
     DM -->|"タスク分配・起動"| RF
     DM -->|"タスク分配・起動"| OP
     DM -->|"タスク分配・起動"| DC
-    DM -->|"完了報告"| L1
+    DM -->|"完了報告"| Disp
 ```
+
+> **注**: 施策管理ワークフロー（L1/L2）経由の場合、L1 がディスパッチャーの役割を兼ねて dev_manager を起動する。詳細は `session-operation-flow.md` §3-§4 を参照。
 
 ### 2.2 標準的な開発フロー
 
@@ -111,17 +119,36 @@ flowchart TD
 | 観点 | 施策管理ワークフロー | コード開発ワークフロー |
 |------|-------------------|---------------------|
 | **目的** | 開発プロセス改善の施策管理 | コードの実装・品質保証・保守 |
+| **エントリーポイント** | L1 マネージャーセッション | 人間 → ディスパッチャー → dev_manager |
 | **マネージャー** | L1（施策管理マネージャー） | dev_manager（開発マネージャー） |
 | **ワーカー** | L2-worker（汎用実施）、L2-evaluator（評価） | 7つの専門ロール（feature_builder 等） |
-| **活動ディレクトリ** | `dev-process-improvement/initiatives/` | `src/`, `tests/`, `docs/`, `openspec/` |
-| **管理ファイル** | 00_proposal 〜 08_gate_review | タスクリスト（形式未定）、git コミット履歴 |
+| **活動ディレクトリ** | `dev-process-improvement/initiatives/` | `src/`, `tests/`, `docs/`, `openspec/`, `sessions/` |
+| **管理ファイル** | 00_proposal 〜 08_gate_review | sessions/ 配下の 4ファイル（plan/log/report/issues）、git コミット履歴 |
 | **品質ゲート** | L2-evaluator による評価 → L1 ゲート判定 | reviewer によるコードレビュー → dev_manager 判定 |
 | **フロー制御** | フェーズゲート方式（通過/条件付き/差し戻し） | ロール間の順次起動（レビュー不合格時の差し戻しあり） |
 | **成果物** | 設計ドキュメント、プロセス改善提案 | コード、テスト、ドキュメント |
 
 ### 3.2 連携ポイント
 
-施策管理ワークフローとコード開発ワークフローは以下の接点で連携する。
+コード開発ワークフローへのエントリーポイントは2つある。
+
+```mermaid
+sequenceDiagram
+    participant H as 人間
+    participant D as ディスパッチャー
+    participant DM as dev_manager
+    participant Roles as 開発ロール群
+
+    H->>D: 自然言語入力（開発意図）
+    D->>D: シナリオ判定（5シナリオ分類）
+    D->>DM: セッション起動コンテキスト
+    DM->>Roles: ロール別タスク分配・起動
+    Roles->>DM: 完了報告
+    DM->>D: 開発タスク完了報告
+    D->>H: 完了通知
+```
+
+施策管理ワークフロー経由の場合:
 
 ```mermaid
 sequenceDiagram
@@ -136,10 +163,10 @@ sequenceDiagram
     L1->>L1: ゲート判定（08_gate_review.md）
 ```
 
-- 施策管理 L1 は「何を作るか」を決め、dev_manager に委譲する
+- 人間が直接エントリーする場合は、ディスパッチャーがシナリオ判定を行い、dev_manager を起動する
+- 施策管理 L1 経由の場合は、L1 が「何を作るか」を決め、dev_manager に委譲する
 - dev_manager は「どう作るか」を決め、適切なロールを起動する
-- dev_manager は開発タスクの完了を施策管理 L1 に報告する
-- 施策管理 L1 はゲート判定で全体の品質を確認する
+- dev_manager は開発タスクの完了をディスパッチャー経由で人間、または施策管理 L1 に報告する
 
 ---
 

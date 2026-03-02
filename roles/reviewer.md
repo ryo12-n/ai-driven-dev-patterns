@@ -19,17 +19,23 @@
 
 ### 1. レビュー対象の確認
 
-dev_manager から渡されたタスク指示でレビュー対象を確認する。
+dev_manager から渡されたタスク指示（DT-XXX 形式）でレビュー対象を確認する。
+
+**レビュー対象の指定方法**（dev_manager のタスク指示に従う）:
+
+- **DT-XXX コミット範囲**: 特定タスクのコミット群をレビューする（最も一般的）
+- **コミットハッシュ範囲**: `git diff <from>..<to>` でレビュー対象を特定する
+- **HEAD~N**: 直近N件のコミットをレビューする
 
 ```bash
-# 最新のN件のコミットを確認（例: 5件）
-git log -n 5 --oneline
+# DT-XXX のコミット群を確認（コミットメッセージの footer で特定）
+git log --oneline --grep="DT-XXX"
 
-# 特定のコミットの詳細を確認
-git show <commit-hash>
+# コミット範囲を指定してレビュー
+git diff <from-hash>..<to-hash>
 
 # 変更されたファイル一覧
-git diff HEAD~5..HEAD --name-only
+git diff <from-hash>..<to-hash> --name-only
 ```
 
 <!-- TODO(ISS-002): openspec統合未定義。OpenSpec開発ライフサイクル確定後に修正 -->
@@ -100,44 +106,31 @@ git diff HEAD~5..HEAD --name-only
 - 小さな最適化
 - コメントの追加
 
-### 4. タスクの起票
+### 4. 問題リストの作成と報告
 
-問題を見つけたら、適切なカテゴリで dev_manager へ報告する（またはタスクファイルを作成する）。
+発見した問題を以下の標準テーブル形式でまとめ、dev_manager に報告する。
 
-起票先の分類:
+**問題リスト標準形式**:
+
+```markdown
+### 問題リスト
+
+| # | 重大度 | 対象ファイル | 行番号 | 観点 | 問題の概要 | 推奨対応 |
+|---|--------|------------|--------|------|-----------|---------|
+| 1 | Critical | src/auth.py | 42 | セキュリティ | SQL インジェクション | プレースホルダー使用 |
+| 2 | High | src/api.py | 105 | バグリスク | None チェック欠如 | ガード節追加 |
+| 3 | Medium | src/utils.py | 23 | 設計 | 重複コード | 共通関数抽出 |
+```
+
+**報告先**: dev_manager に一本化する（dev_manager が差し戻し先を判断する）。
+
+起票先の分類（参考: dev_manager が判断に使用する情報）:
 
 | 種別 | 対応ロール | 内容 |
 |------|----------|------|
 | Bug | Bug Fixer | セキュリティ脆弱性、バグリスク、動作の誤り |
 | Refactor | Refactorer | 重複コード、設計上の問題、可読性の問題 |
 | Optimize | Optimizer | パフォーマンス問題、非効率なアルゴリズム |
-
-**タスク記録の例**:
-```markdown
-# 発見した問題: SQLインジェクションのリスク
-
-## 優先度: high
-
-## 概要
-`src/database.py` の `get_user_by_name` 関数で、
-ユーザー入力を直接SQLクエリに埋め込んでいるため、
-SQLインジェクションのリスクがある。
-
-## 発見コミット
-- Commit: a3f8c1d
-- File: src/database.py:42
-
-## 問題のコード
-```python
-def get_user_by_name(name):
-    query = f"SELECT * FROM users WHERE name = '{name}'"
-    return db.execute(query)
-```
-
-## 完了条件
-- [ ] プレースホルダーを使用したクエリに変更
-- [ ] SQLインジェクションのテストを追加
-```
 
 ### 5. コミット
 
@@ -163,7 +156,17 @@ EOF
 報告に含める内容:
 - レビューしたコミット数
 - 発見した問題の数と内訳（Critical/High/Medium/Low）
-- 起票したタスク一覧
+- 問題リスト（上記の標準テーブル形式）
+
+**総合判定**（必須）:
+```markdown
+### 総合判定
+- **判定**: 合格 / 不合格（Critical X件、High Y件）
+- **差し戻し先推奨**: {feature_builder / bug_fixer / refactorer}（問題#X, #Y の修正）
+- **後続推奨**: {refactorer / optimizer / test_writer}（問題#Z の対応）
+```
+
+dev_manager がこの総合判定を参照して差し戻し判断を行う。
 
 ---
 

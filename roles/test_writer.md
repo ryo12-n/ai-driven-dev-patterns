@@ -32,7 +32,40 @@ dev_manager から渡されたタスク指示を読む。
 # カバレッジが低い箇所を特定する
 ```
 
-### 3. テスト追加計画
+### 3. TDD分離フロー: 先行テスト作成
+
+dev_manager が TDD分離を適用した場合（`dev-workflow-detail.md` §2 の判断基準に基づく）、feature_builder より先にテストを作成する。
+
+**先行テスト作成の手順**:
+
+1. dev_manager のタスク指示から仕様（目的・完了条件・対象モジュール）を読み取る
+2. 仕様ベースでテストを設計する（実装コードは存在しない段階）
+   - 関数シグネチャ・クラス構造を想定して設計する
+   - テストファイルの冒頭コメントに想定シグネチャを記載する
+3. テストを作成する（この時点ではテストは全て失敗する: Red 状態）
+4. テストファイルをコミットする
+5. 完了報告で想定シグネチャ・モジュール構造を申し送りに含める（feature_builder が参照する）
+
+**仕様ベースのテスト設計例**:
+```python
+"""
+想定シグネチャ:
+- login(username: str, password: str) -> AuthResult
+- AuthResult: success: bool, token: Optional[str], error: Optional[str]
+"""
+
+def test_login_with_valid_credentials_returns_token():
+    result = login("valid_user", "correct_password")
+    assert result.success is True
+    assert result.token is not None
+
+def test_login_with_invalid_password_returns_error():
+    result = login("valid_user", "wrong_password")
+    assert result.success is False
+    assert result.error is not None
+```
+
+### 4. テスト追加計画（カバレッジ拡充時）
 
 以下の観点でテストを計画する。
 
@@ -166,6 +199,11 @@ EOF
 - 追加したテストの概要
 - カバレッジの変化
 - 発見したバグ（あれば）
+
+**TDD分離フロー時の追加申し送り**:
+- テストが想定する関数シグネチャ・モジュール構造を明記する（feature_builder がテストを通す実装を行う際の参照情報）
+- テストファイルのパスとテスト一覧を明記する
+- 例: 「想定シグネチャ: `login(username: str, password: str) -> AuthResult`、テストファイル: `tests/test_auth.py`（5件）」
 
 ---
 

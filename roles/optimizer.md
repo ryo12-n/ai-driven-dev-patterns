@@ -23,9 +23,27 @@ dev_manager から渡されたタスク指示を読む。
 
 **重要**: 最適化の前に、必ず現状を計測します。
 
-#### パフォーマンス計測の種類
+#### 計測ツールの選定ガイドライン
 
-**実行時間**:
+プロジェクトの言語・フレームワークに応じて適切な計測方法を選択する。プロジェクト固有の計測ツール・スクリプトがある場合はそちらを優先する。
+
+**基本原則**: 言語に依存しない実行時間計測を基本とし、利用可能なプロファイリングツールを組み合わせる。
+
+| 計測対象 | 汎用的な計測方法 | 言語固有ツールの例 |
+|---------|----------------|-----------------|
+| 実行時間 | コマンドの `time` コマンド、タイムスタンプ取得 | Python: `time` モジュール、Node.js: `console.time`、Java: `System.nanoTime` |
+| プロファイリング | 言語標準のプロファイラ | Python: `cProfile`、Node.js: `--prof`、Go: `pprof` |
+| メモリ使用量 | OS レベルのメモリ監視 | Python: `tracemalloc`、Node.js: `--inspect`、Java: `jstat` |
+
+#### パフォーマンス計測の例
+
+**実行時間計測（汎用）**:
+```bash
+# コマンドラインでの計測
+time <実行コマンド>
+```
+
+**言語固有の計測（参考: Python）**:
 ```python
 import time
 
@@ -33,23 +51,6 @@ start = time.time()
 result = slow_function()
 end = time.time()
 print(f"実行時間: {end - start:.3f}秒")
-```
-
-**プロファイリング**:
-```python
-import cProfile
-
-cProfile.run('slow_function()')
-```
-
-**メモリ使用量**:
-```python
-import tracemalloc
-
-tracemalloc.start()
-result = memory_intensive_function()
-current, peak = tracemalloc.get_traced_memory()
-print(f"メモリ使用量: {current / 1024 / 1024:.2f} MB")
 ```
 
 ### 3. ボトルネックの特定
@@ -202,6 +203,18 @@ EOF
 - [ ] 最適化が完了した
 - [ ] 振る舞いが変わっていない（全テストパス）
 - [ ] パフォーマンスが改善されている（数値で示せる）
+
+---
+
+## 発動条件
+
+dev_manager から起動される条件は以下の通り。
+
+| # | 発動条件 | トリガー元 |
+|---|---------|-----------|
+| 1 | reviewer がコードレビューでパフォーマンス問題を指摘した場合 | reviewer の問題リスト（Medium/High: パフォーマンスカテゴリ） |
+| 2 | ユーザーまたは L1 からの計画的最適化指示 | dev_manager のタスク指示 |
+| 3 | 計測で目標値未達が確認された場合 | dev_manager の判断（計測結果に基づく） |
 
 ---
 
