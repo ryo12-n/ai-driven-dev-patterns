@@ -62,6 +62,35 @@
 
 ---
 
+<!-- 任意: 並列実行を行った場合に記入する -->
+<!--
+## 並列実行ログ
+
+### 並列起動
+- **起動日時**: YYYY-MM-DD HH:MM
+- **並列化パターン**: {後処理並列 / 独立モジュール並列 / 品質改善並列}
+- **並列ロール**:
+
+| ロール | worktree ブランチ | 起動時刻 | 完了時刻 | 状態 |
+|--------|-----------------|---------|---------|------|
+| {role_name_1} | worktree/{session-name}/{role_name_1} | HH:MM | HH:MM | 完了 / 失敗 |
+| {role_name_2} | worktree/{session-name}/{role_name_2} | HH:MM | HH:MM | 完了 / 失敗 |
+
+### マージ結果
+- **マージ日時**: YYYY-MM-DD HH:MM
+- **コンフリクト**: なし / あり（詳細を記載）
+- **統合テスト**: パス / 失敗（詳細を記載）
+
+### 並列ロールの成果物格納先
+各ロールの成果物は `sessions/{session-name}/{role-name}/` 配下に格納される。
+マージ前は各 worktree ブランチ上に存在し、マージ後にメインブランチに統合される。
+
+| ロール | 成果物格納先 | 主な成果物 |
+|--------|------------|-----------|
+| {role_name_1} | sessions/{session-name}/{role_name_1}/ | plan.md, log.md, report.md, issues.md |
+| {role_name_2} | sessions/{session-name}/{role_name_2}/ | plan.md, log.md, report.md, issues.md |
+-->
+
 <!-- 任意: セッション完了時に記入する -->
 <!--
 ## 成果物サマリ
