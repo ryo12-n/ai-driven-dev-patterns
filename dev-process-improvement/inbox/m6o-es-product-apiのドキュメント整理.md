@@ -1,0 +1,3 @@
+/home/developer/projects/m6o-es-product-api_dev_process_improvement/m6o-es-product-apiのドキュメントを整理したい。
+設計書や、開発プロセスに関する資料をmy_work配下においているけれど、整理整頓するアイデアをまとめたい。
+開発プロセスに関する資料はAI用の資料と人間用の資料で分けて管理したい。.claude/rulesディレクりなどをおいて、claude用のドキュメントを管理したい(ディレクトリ名は「.claude/」ディレクトリで標準で考慮されているもので、適切なディレクトリ名があれば教えてほしい)
