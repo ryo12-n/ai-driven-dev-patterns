@@ -22,5 +22,5 @@
 ## 補足・参考情報
 
 - 環境構成: WSL（Ubuntu）+ Claude Code CLI + CodeSail + VS Code（Remote-WSL）
-- inbox に詳細な手順書あり（フェーズ2 on WSL 構成）
+- `refs/個人PCローカル環境構築-手順書.md` に詳細な手順書あり（フェーズ2 on WSL 構成）
 - 直接的にリポ分離施策（`dev-process-improvementリポジトリ分離`）のブロック解消に寄与

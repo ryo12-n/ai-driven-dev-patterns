@@ -15,7 +15,7 @@
 | `マネージャーロール整備.md` | **backlog 候補** | dev_manager ロールの汎用化・責務明確化 |
 | `伊藤さん紹介のclaudecode標準skillsについて取り込めるか評価.md` | **backlog 候補** | 外部 skills 評価・標準 skills 一覧管理 |
 | `個人PCのローカル環境をiPhoneからリモート操作.md` | **refs/ 移動** | 既存 backlog「個人PCローカル環境構築」の詳細手順書（177行）。refs/ に移動して backlog の参照先を更新 |
-| `トリアージセッションでbacklog削除.md` | **対応不要（削除）** | L1 の git rm ルール + クローズチェックリスト（項目4）で十分。archived 23件 vs backlog 13件の突合で孤立なし |
+| `トリアージセッションでbacklog削除.md` | **backlog 候補** | L1 の削除漏れ対策として、トリアージで定期的に backlog の施策化済みチェックを行う仕組みを整備。確認結果は backlog に追記、削除はユーザー許可後 |
 | `ref_ai-driven-development-poc.md` | 参照保持（継続） | PoC 参照 |
 | `ref_ai-functions.md` | 参照保持（継続） | ツール設計参照 |
 | `ref_openspec-official-summary.md` | 参照保持（継続） | OpenSpec 公式サマリー参照 |
@@ -72,6 +72,7 @@
 | 中 | OpenSpec 活用専門ロール設定 | OpenSpec skills を扱う専門ロールを新設。マネージャー経由のQ&Aフロー整備を含む | OpenSpec 運用の専門性向上。ISS-006 の具体的な解決策 |
 | 中 | マネージャーロール整備 | dev_manager ロールの汎用化。責務明確化（計画・進捗管理・知見収集・課題起票・ゲートチェック）。人間インターフェースの一元化 | マネージャーロールの再利用性向上。各シナリオで汎用的に活用可能に |
 | 低 | Claude Code 標準 skills 評価・取り込み | 伊藤さん共有の /batch, /simplify 等の外部 skills と、Claude Code 標準 skills の評価・一覧管理 | 有用な skills の早期採用。知見の体系的管理 |
+| 中 | トリアージでの backlog 施策化済みチェック | L1 の backlog ファイル削除漏れを検知するため、トリアージで定期的に backlog vs initiatives を突合 | backlog の鮮度維持。削除漏れの早期検知 |
 
 ### 優先度変更候補
 
@@ -111,4 +112,4 @@
 **作成者**: トリアージセッション
 **作成日**: 2026-03-03
 **レビュー依頼先**: ユーザー
-**レビュー状態**: レビュー待ち
+**レビュー状態**: backlog 追加5件・inbox 整理・refs 移動 全件反映済み
