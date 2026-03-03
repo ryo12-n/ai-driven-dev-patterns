@@ -1,2 +1,0 @@
-ai-driven-dev-patternsのreadmeの内容を、人間用のエントリーポイントとして整備したい。どのようなセッションをどのようなプロンプトで呼べるのかや、人間用の全体フローが分かるドキュメントなど整理したい。
-参考としてdev-process-improvement/README.mdが良いかも
