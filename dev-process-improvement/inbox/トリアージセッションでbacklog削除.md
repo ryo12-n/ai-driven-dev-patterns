@@ -1,1 +1,0 @@
-トリアージセッションでbacklogとarchiveのinitiativeを確認させて終了となっているbacklogを削除させたい
