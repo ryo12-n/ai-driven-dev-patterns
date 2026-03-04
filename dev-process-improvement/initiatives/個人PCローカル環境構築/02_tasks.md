@@ -15,7 +15,7 @@
 | H-002 | Claude Code CLI のインストール（`npm install -g @anthropic-ai/claude-code` または公式インストーラー） | `claude --version` が成功する | 🔴 | ✅ |
 | H-003 | Claude Code CLI の認証設定（API キーまたは OAuth ログイン） | `claude` コマンド起動時に認証エラーが出ない | 🔴 | ✅ |
 | H-004 | gh CLI のインストール・認証（`gh auth login`） | `gh auth status` が成功する | 🔴 | ✅ |
-| H-005 | 開発ディレクトリの作成とリポジトリ clone（`~/dev/` 配下） | `~/dev/ai-driven-dev-patterns` が存在し、`git status` が成功する | 🔴 | ⬜ |
+| H-005 | 開発ディレクトリの作成とリポジトリ clone（`~/projects/` 配下） | `~/projects/ai-driven-dev-patterns` が存在し、`git status` が成功する | 🔴 | ✅ |
 | H-006 | CodeSail CLI のインストール（`npm install -g codesail`） | `codesail --version` が成功する | 🟡 | ⬜ |
 | H-007 | CodeSail ペアリング（QR コード読み取り） | iPhone の CodeSail アプリからセッションにチャット送信できる | 🟡 | ⬜ |
 | H-008 | VS Code + Remote-WSL 拡張のインストール | VS Code から WSL の `~/dev/` を開いてファイル編集できる | 🔵 | ⬜ |
