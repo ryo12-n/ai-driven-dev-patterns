@@ -39,7 +39,9 @@ dev-process-improvement 配下で行うすべての git コミットに適用す
 
 | session-type | category | 用途 | 例 |
 |-------------|----------|------|-----|
-| `triage` | `YYYYMMDD` | inbox/backlog/CSV の走査・整理 | `[triage] 20260303: inbox 走査・バックログ整理` |
+| `triage-mgr` | `YYYYMMDD` | マネージャー: 事前調査・計画・ディスパッチ・集約レポート | `[triage-mgr] 20260305: 事前調査・ワーカー割り当て` |
+| `triage-worker` | `YYYYMMDD` | ワーカー: 走査実行・スキャンレポート | `[triage-worker] 20260305: set-1 inbox/CSV スキャン完了` |
+| `triage-eval` | `YYYYMMDD` | 評価者: 評価レポート | `[triage-eval] 20260305: set-1 評価レポート作成` |
 | `sync` | 同期方向（`upstream-to-origin` / `origin-to-upstream`） | リポジトリ間の同期 | `[sync] upstream-to-origin: main ブランチを同期` |
 | `maintenance` | 作業対象を示す名前 | 設定変更・リファクタ等の保守作業 | `[maintenance] settings: $schema と deny ルールを追加` |
 
@@ -60,11 +62,11 @@ dev-process-improvement 配下で行うすべての git コミットに適用す
 ### 非施策作業のコミット
 
 ```
-[triage] 20260303: inbox 走査・バックログ整理
+[triage-mgr] 20260303: 事前調査・ワーカー割り当て・集約レポート作成
 
-- inbox/commit-message-rules.md を処理
-- backlog/commit-message-rules.md を作成
-- プロセス改善_課題管理.csv に ISS-028 を起票
+- 00_pre_investigation.md, 01_plan.md を作成
+- set-1, set-2 をディスパッチ
+- 03_report.md を作成し PR 提出
 ```
 
 ```
