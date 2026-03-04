@@ -77,3 +77,14 @@
 ### 蒸留後の扱い
 
 トリアージでルール・docsに反映されたエントリは削除する。git履歴が証跡となる。
+
+---
+
+## リポジトリ境界ポリシー
+
+本ディレクトリ（dev-process-improvement）は ai-driven-dev-patterns（ルート）のコンテキストに **依存する側** である。
+
+- ai-driven-dev-patterns のリソース（roles/、CLAUDE.md、openspec/ 等）を読み取り、改善結果を書き戻す
+- 逆方向の依存（ai-driven-dev-patterns → dev-process-improvement）は発生しない
+- 課題管理: `プロセス改善_課題管理.csv` で独立管理（ルートの `課題管理.csv` とは別体系）
+- 将来的に別リポジトリへ分離する想定。分離後は `claude --add-dir` 等でルートのコンテキストを参照する運用とする
