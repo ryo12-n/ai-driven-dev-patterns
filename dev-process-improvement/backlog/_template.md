@@ -6,6 +6,7 @@
 |------|------|
 | **優先度** | 🔴 高 / 🟡 中 / 🔵 低 |
 | **ステータス** | 候補 / initiative 開始済 / 完了 |
+| **対象リポジトリ** | ai-driven-dev-patterns / dev-process-improvement / ai-research-notebook / 横断 |
 | **起票日** | YYYY-MM-DD |
 
 ## 課題・背景
