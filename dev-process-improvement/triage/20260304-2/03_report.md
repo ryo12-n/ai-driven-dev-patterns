@@ -17,7 +17,7 @@
 | `inbox-backlog二重構造の整理方針.md` | **対応不要→削除候補** | ISS-031 で CSV 追跡済み。方針「当面は二重構造を許容」も記載済み |
 | `role-format-guide準拠確認チェックリスト.md` | **backlog候補** | マネージャーロール整備 gate review 由来。role-format-guide.md へのチェックリスト付録追加 |
 | `sessionsテンプレート間連携ガイド.md` | **backlog候補** | マネージャーロール整備 gate review 由来。sessions/_template/ 間のデータフロー明示 |
-| `トリアージのロールとセッション作成ai-driven-dev-patterns.md` | **対応済み→削除候補** | PR#59（da359c9）で .claude/rules/triage.md・triage/_template/ をセットアップ済み |
+| `トリアージのロールとセッション作成ai-driven-dev-patterns.md` | **backlog候補→施策化** | PR#59 で基本セットアップ済みだが、dev-process-improvement 側との差分（refs/管理、施策化済みチェック、テンプレート詳細度等）のブラッシュアップが必要。backlog「ai-driven-dev-patternsトリアージプロセスのブラッシュアップ」として施策化 |
 | `メタ認知による改善の強制.md` | **backlog候補（探索的）** | 全セッションへの評価強制・汎用気づき提供者の構築提案。方法検討からの段階的アプローチ |
 | `ref_ai-driven-development-poc.md` | 参照保持（継続） | PoC 参照 |
 | `ref_ai-functions.md` | 参照保持（継続） | ツール設計参照 |
@@ -128,8 +128,25 @@
 
 - 起票した課題：0 件
 
+## レビュー承認後の実施結果
+
+以下のアクションをレビュー承認に基づき実施した（2026-03-04）:
+
+| アクション | 結果 |
+|-----------|------|
+| inbox `トリアージのロールとセッション作成ai-driven-dev-patterns.md` → backlog 施策化 | backlog「ai-driven-dev-patternsトリアージプロセスのブラッシュアップ」として新規作成。PR#59 で基本セットアップ済みの差分（refs/管理、施策化済みチェック、テンプレート詳細度等）をスコープとして定義。inbox ファイル削除完了 |
+| inbox `inbox-backlog二重構造の整理方針.md` → 削除 | ISS-031 で CSV 追跡済みのため削除完了 |
+| inbox `claudeのセキュリティ用のsettingsjson設定.md` → backlog「LLMローカル開発のセキュリティ強化」に統合 | 統合元セクション追記、inbox ファイル削除完了 |
+| inbox `role-format-guide準拠確認チェックリスト.md` → backlog 新規追加 | backlog ファイル作成、inbox ファイル削除完了 |
+| inbox `sessionsテンプレート間連携ガイド.md` → backlog 新規追加 | backlog ファイル作成、inbox ファイル削除完了 |
+| inbox `メタ認知による改善の強制.md` → backlog 新規追加（探索的） | backlog ファイル作成、inbox ファイル削除完了 |
+| backlog `collab-log参照更新` → `workflow.md整合性一括修正` に統合 | ISS-030 を対象課題テーブルに追加、統合元セクション追記、統合元 backlog ファイル削除完了 |
+| ISS-031 ステータス更新 | 起票 → 方針確定（「当面は二重構造を許容」）、確定日 2026-03-04 |
+
+**backlog 最終状態**: 18件（統合-1、追加+4 = 15-1+4 = 18件）
+
 ---
 **作成者**: トリアージセッション
 **作成日**: 2026-03-04
 **レビュー依頼先**: ユーザー
-**レビュー状態**: レビュー待ち
+**レビュー状態**: 承認済み・反映完了
