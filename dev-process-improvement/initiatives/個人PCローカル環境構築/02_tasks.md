@@ -18,7 +18,7 @@
 | H-005 | 開発ディレクトリの作成とリポジトリ clone（`~/projects/` 配下） | `~/projects/ai-driven-dev-patterns` が存在し、`git status` が成功する | 🔴 | ✅ |
 | H-006 | ~~CodeSail CLI のインストール~~ → Claude Code Remote Control で代替 | `claude remote-control` で iPhone から接続できる | 🟡 | ✅ |
 | H-007 | ~~CodeSail ペアリング~~ → Remote Control 接続確認（複数セッション同時接続も確認済み） | iPhone の Claude アプリからセッションに接続・操作できる | 🟡 | ✅ |
-| H-008 | VS Code + Remote-WSL 拡張のインストール | VS Code から WSL の `~/dev/` を開いてファイル編集できる | 🔵 | ⬜ |
+| H-008 | ~~VS Code + Remote-WSL 拡張のインストール~~ 対応不要（Claude Code CLI + Remote Control で十分） | — | 🔵 | ✅ |
 
 ## フェーズ2 タスク（L2-worker）
 
@@ -36,4 +36,4 @@
 
 ---
 **作成者**: L1
-**最終更新**: 2026-03-04
+**最終更新**: 2026-03-04（施策クローズ）
