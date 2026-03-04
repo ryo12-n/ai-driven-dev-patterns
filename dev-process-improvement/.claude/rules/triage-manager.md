@@ -14,7 +14,7 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 1. `triage/_template/` を `triage/YYYYMMDD/` にコピーしてセッションフォルダを作成する
 2. `00_pre_investigation.md` の穴埋めを実施する（現状把握）
    - inbox / backlog / CSV / initiatives の現状に加え、`.claude/rules/*.md` と `docs/workflow.md` の整合性も確認する
-   - `docs/collab-log.md` の未蒸留エントリも確認する
+   - `inbox/` の未処理エントリ（セッション終了時の気づきを含む）を確認する
    - `inbox/ref_*.md`（参照物ポインター）がある場合は対応する `refs/` の内容も確認する
 3. 調査結果をもとに `01_plan.md` を作成する（今回の重点・ワーカー割り当てを決める）
 4. ワーカーセットを作成・ディスパッチする（下記「ワーカーのディスパッチ」を参照）
@@ -32,7 +32,7 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 |------|------------|
 | inbox ≤ 3件 AND backlog ≤ 10件 AND 前回からの間隔が短い | 1セット（全TGタスク） |
 | inbox > 5件 or backlog変更が多い | 2セット（例: inbox+CSV / backlog+initiative+関係性分析） |
-| 前回から2週間以上空いた or collab-log未蒸留多数 | 3セット（inbox / backlog+CSV / initiative+rules+collab-log） |
+| 前回から2週間以上空いた or inbox未処理多数 | 3セット（inbox / backlog+CSV / initiative+rules） |
 
 判断根拠は `01_plan.md` の「ワーカー割り当て」セクションに記録する。
 
@@ -124,9 +124,9 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
   - `ref_*.md`（参照物ポインター）を削除する場合でも、対応する `refs/` の本体は削除しない。`refs/` の扱いは別途判断する
 - **refs/ の孤立エントリ確認**: `refs/` にポインターなし（対応する `inbox/ref_*.md` が存在しない）エントリがあればユーザーに内容を確認する
   - ユーザーの回答をもとに `inbox/ref_<名前>.md` を新規作成し、資料の概要と今後の扱い方針をメモとして記載する
-- **collab-log の蒸留**: `docs/collab-log.md` の未蒸留エントリを確認し、ルール・docsへの反映を判断する
-  - 反映したエントリは `docs/collab-log.md` から削除する（git履歴が証跡）
-  - 判断保留のものはステータスを「保留」に更新して残す
+- **inbox の気づきエントリ処理**: `inbox/` のセッション終了時の気づきエントリを確認し、ルール・docsへの反映を判断する
+  - 反映したエントリは `inbox/` から削除する（git履歴が証跡）
+  - 判断保留のものは `inbox/` に残す
 - **backlog 関係性分析（TG-005）**: backlog 内のアイテム間の関係性を横断的に分析する
   - 重複候補 / 依存関係 / 統合候補の3種類の関係を検出する
   - 分析結果は `03_report.md` の「backlog 関係性分析（TG-005）」テーブルに記載する
@@ -159,6 +159,21 @@ PR 作成後、以下の確認を行う：
 
 承認いただけましたら backlog に反映します。
 ```
+
+---
+
+## 関連ファイル一覧
+
+本ルールファイルの内容を変更した場合、以下のファイルの連動更新が必要になる可能性がある。
+
+| ファイル | 連動更新の内容 |
+|---------|-------------|
+| `triage/_template/00_pre_investigation.md` | 事前調査の走査項目・テンプレート構成 |
+| `triage/_template/01_plan.md` | 実施計画のテンプレート構成 |
+| `triage/_template/03_report.md` | レポートのテンプレート構成 |
+| `docs/workflow.md` | トリアージセッションフローの記述（人間向け可視化） |
+| `triage-worker.md` | ワーカーの作業フロー・担当ファイルに影響する変更の場合 |
+| `triage-evaluator.md` | 評価基準・レポート構成に影響する変更の場合 |
 
 ---
 
