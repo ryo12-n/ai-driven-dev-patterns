@@ -83,3 +83,25 @@
 - 転記対象の課題は発生しなかったため、CSV への転記は不要
 **成果物**: なし（転記対象なし）
 **課題・気づき**: なし
+
+### [2026-03-04] H-006 / H-007: CodeSail 代替手段の検討と Remote Control 接続確認
+**状態**: 完了（代替手段で解決）
+**作業内容**:
+- CodeSail が日本の App Store で公開されていないことを確認
+- 代替手段として Claude Code Remote Control（`claude remote-control` or `/rc`）を採用
+  - iPhone の Claude アプリから WSL 上のセッションへ接続成功
+  - 複数ターミナルへの同時接続も動作確認済み
+- フォールバック案として Termius + Tailscale による SSH 接続も検討（保留）
+**成果物**: なし
+**課題・気づき**: CodeSail 前提の運用ガイド（deliverables/運用ガイド.md セクション4）は Remote Control ベースに更新が必要
+
+### [2026-03-04] リポジトリ配置の確認
+**状態**: 完了
+**作業内容**:
+- `ai-driven-dev-patterns` — `/home/nr202/projects/ai-driven-dev-patterns` に存在確認
+  - リモート: origin → `ryo12-n/ai-driven-dev-patterns`（upstream は未設定）
+- `dev-process-improvement` — `/home/nr202/projects/dev-process-improvement` にクローン
+  - `ai-driven-dev-patterns/dev-process-improvement/` はサブディレクトリとして既存のため、親ディレクトリにクローン
+  - 現時点では空リポジトリ
+**成果物**: なし
+**課題・気づき**: upstream リモートの追加が未実施
