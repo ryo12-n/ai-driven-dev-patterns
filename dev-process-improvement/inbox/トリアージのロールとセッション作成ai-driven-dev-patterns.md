@@ -1,0 +1,3 @@
+ai-driven-dev-patternsにおいて、inboxや課題管理csvからbacklog起票したり、クロードのルールと人間用のドキュメントの整合性をみたりするためのトリアージセッションとロールを
+ai-driven-dev-patterns側へ用意したい。
+dev-process-improvementのセッションフローを参考にすると良さそう。
