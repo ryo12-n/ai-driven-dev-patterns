@@ -43,8 +43,11 @@
         ├── bug_fixer（バグ修正）
         ├── refactorer（リファクタリング）
         ├── optimizer（最適化）
-        └── documentarian（ドキュメント整備）
+        ├── documentarian（ドキュメント整備）
+        └── openspec_specialist（OpenSpec 仕様管理）
 ```
+
+> **ユーザー直接呼び出し**: ユーザーが `/opsx:*` スキルを直接実行した場合、openspec_specialist は dev_manager を介さずにスキルを実行する。
 
 - ユーザーが dev_manager に自然言語でタスクを入力する
 - dev_manager がシナリオを判定し、セッションディレクトリを作成し、ロール起動計画を策定する

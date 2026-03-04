@@ -47,6 +47,41 @@
 - ロール起動計画を策定する（起動順序・各ロールへのタスク指示の概要）
 - plan.md の「やること」「やらないこと」「完了条件」を記入する
 
+### 3.5 OpenSpec 連携判断
+
+タスクに OpenSpec の仕様管理が関わる場合、openspec_specialist への委譲を判断する。
+
+#### OpenSpec 委譲の判断基準
+
+| 条件 | アクション |
+|------|-----------|
+| 新機能の仕様策定が必要 | openspec_specialist を起動し、仕様作成を委譲する |
+| 既存仕様の更新・同期が必要 | openspec_specialist を起動し、sync-specs / archive を委譲する |
+| 実装後の仕様検証が必要 | openspec_specialist を起動し、verify-change を委譲する |
+| 仕様が既に確定済み | openspec_specialist は不要。直接 feature_builder 等を起動する |
+
+#### 仕様→実装の連携フロー
+
+OpenSpec で仕様を作成してから実装に進む場合の標準フロー:
+
+```
+1. openspec_specialist: 仕様作成（new-change / ff-change）
+   ↓ Q&A が必要な場合は壁打ち連携
+2. openspec_specialist: タスク一覧を dev_manager に報告
+3. dev_manager: タスクを feature_builder 等に配分
+4. feature_builder 等: 実装
+5. openspec_specialist: 検証（verify-change）
+6. openspec_specialist: アーカイブ（archive-change）
+```
+
+#### Q&A シートへの対応
+
+openspec_specialist が Q&A シートで質問をブロック報告した場合:
+
+1. `sessions/<session-name>/openspec_specialist/qa.md` を読む
+2. ユーザーと壁打ちし、回答を Q&A シートに記入する
+3. openspec_specialist を再起動して作業を再開させる
+
 ### 4. ロール起動（log.md）
 
 各専門ロールを起動する際、以下を行う:
