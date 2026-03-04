@@ -68,14 +68,14 @@ flowchart TD
 
 ```mermaid
 sequenceDiagram
-    participant L1 as 施策管理 L1
+    participant User as ユーザー
     participant DM as dev_manager
     participant TW as test_writer
     participant FB as feature_builder
     participant RV as reviewer
     participant DC as documentarian
 
-    L1->>DM: 開発タスク発行
+    User->>DM: 開発タスク発行
     DM->>DM: タスク分析・TDD分離判断
 
     alt TDD分離を適用
@@ -105,7 +105,7 @@ sequenceDiagram
             DM->>DC: ドキュメント更新指示
             DC->>DM: 完了報告
         end
-        DM->>L1: 開発タスク完了報告
+        DM->>User: 開発タスク完了報告
     else レビュー不合格（Critical/High あり）
         DM->>DM: 差し戻し先を判定
         alt バグリスク指摘
@@ -167,13 +167,13 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant L1 as 施策管理 L1
+    participant User as ユーザー
     participant DM as dev_manager
     participant BF as bug_fixer
     participant RV as reviewer
     participant TW as test_writer
 
-    L1->>DM: バグ修正タスク発行（バグ報告含む）
+    User->>DM: バグ修正タスク発行（バグ報告含む）
     DM->>DM: バグ報告の分析・優先度確認
 
     DM->>BF: バグ修正指示（再現条件・期待動作・関連コード）
@@ -194,14 +194,14 @@ sequenceDiagram
             DM->>TW: 回帰テスト拡充指示
             TW->>DM: 完了報告
         end
-        DM->>L1: バグ修正完了報告
+        DM->>User: バグ修正完了報告
     else レビュー不合格
         alt 修正が不十分/別のバグを生んでいる
             DM->>BF: 再修正指示（指摘内容）
             BF->>DM: 再修正完了報告
             DM->>RV: 再レビュー指示
         else 修正が大規模化（リファクタリングが必要）
-            DM->>L1: 計画変更提案（リファクタリングタスクの追加を提案）
+            DM->>User: 計画変更提案（リファクタリングタスクの追加を提案）
         end
     end
 ```
@@ -245,13 +245,13 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant L1 as 施策管理 L1
+    participant User as ユーザー
     participant DM as dev_manager
     participant TW as test_writer
     participant RF as refactorer
     participant RV as reviewer
 
-    L1->>DM: リファクタリングタスク発行
+    User->>DM: リファクタリングタスク発行
     DM->>DM: 対象コードのテストカバレッジ確認
 
     alt カバレッジ < 70%
@@ -275,7 +275,7 @@ sequenceDiagram
     RV->>DM: レビュー結果報告
 
     alt レビュー合格
-        DM->>L1: リファクタリング完了報告
+        DM->>User: リファクタリング完了報告
     else レビュー不合格
         alt 振る舞いが変わっている
             DM->>RF: 差し戻し（振る舞い復元指示）
@@ -495,7 +495,7 @@ DT-XXX
 | レベル | 条件 | エスカレーション先 |
 |--------|------|-----------------|
 | Level 1 | ロール内で解決不可（テスト失敗が修正できない、要件不明確等） | dev_manager |
-| Level 2 | dev_manager で解決不可（計画変更が必要、スコープ外の判断等） | 施策管理 L1 |
+| Level 2 | dev_manager で解決不可（計画変更が必要、スコープ外の判断等） | ユーザー |
 | Level 3 | L1 で解決不可（技術的制約、外部依存等） | 人間（ユーザー） |
 
 #### 4.3.4 差し戻し回数の上限
