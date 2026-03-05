@@ -60,7 +60,7 @@
 
 ## ドキュメント整合性ルール
 
-`.claude/rules/*.md`（AIルールファイル）が正の情報源（Source of Truth）。`docs/workflow.md` はその人間向け可視化。
+`.claude/skills/` 配下のスキル・エージェント定義が正の情報源（Source of Truth）。`docs/workflow.md` はその人間向け可視化。
 
 **ルールファイルを変更した場合は、必ず `docs/workflow.md` も合わせて更新すること。**
 
@@ -96,8 +96,9 @@
 
 | 分類 | 読者 | 配置先 | 用途例 |
 |------|------|--------|--------|
-| Claude 常時参照 | Claude | `.claude/rules/` | セッションルール（l1-manager, l2-worker 等） |
-| Claude オンデマンド参照 | Claude | `.claude/skills/`（ルート側） | トリアージポリシー等、特定タスク時のみ必要なもの |
+| Claude 常時参照 | Claude | `.claude/rules/` | コミットメッセージ規約等（全セッション共通） |
+| Claude オンデマンド参照（スキル） | Claude | `.claude/skills/` | セッションルール（l1-manager, triage-manager 等） |
+| Claude 独立コンテキスト（エージェント） | Claude | `.claude/skills/*/agents/` | ワーカー・評価者エージェント（l2-worker, triage-worker 等） |
 | 人間用 | 人間 | `docs/`, `README.md` | workflow.md、運用手順 |
 
 **判断基準**: 「毎回のリクエストで参照が必要か？」→ Yes なら `rules/`、No なら `skills/`。
