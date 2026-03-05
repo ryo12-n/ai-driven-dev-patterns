@@ -117,14 +117,28 @@ sessions/   ← セッション記録（plan / log / report / issues）
 
 ## ドキュメントマップ
 
-| 知りたいこと | 参照先 |
-|------------|--------|
-| 環境構築 | [docs/dev-setup.md](docs/dev-setup.md) |
-| セッション詳細・プロンプト例集 | [docs/session-guide.md](docs/session-guide.md) |
-| 各ロールの詳細定義 | [roles/](roles/) |
-| セッションフロー設計書 | [docs/design/session-operation-flow.md](docs/design/session-operation-flow.md) |
-| upstream 同期手順 | [docs/sync-guide.md](docs/sync-guide.md) |
-| Claude Code ディレクトリ構成 | [.claude/rules/claude-directory-guide.md](.claude/rules/claude-directory-guide.md) |
+| 知りたいこと | 参照先 | 読者 |
+|------------|--------|------|
+| 環境構築 | [docs/dev-setup.md](docs/dev-setup.md) | 人間 |
+| セッション詳細・プロンプト例集 | [docs/session-guide.md](docs/session-guide.md) | 人間 |
+| 各ロールの詳細定義 | [roles/](roles/) | 人間 |
+| セッションフロー設計書 | [docs/design/session-operation-flow.md](docs/design/session-operation-flow.md) | 人間 |
+| upstream 同期手順 | [docs/sync-guide.md](docs/sync-guide.md) | 人間 |
+| Claude Code ディレクトリ構成 | [.claude/rules/claude-directory-guide.md](.claude/rules/claude-directory-guide.md) | Claude（常時） |
+| トリアージポリシー | [.claude/skills/triage/](.claude/skills/triage/) | Claude（オンデマンド） |
+
+### 文書分類ポリシー
+
+本リポジトリではドキュメントの読者（人間 or Claude）を明確に区別し、配置先を分けている。
+
+| 分類 | 配置先 | 説明 |
+|------|--------|------|
+| 人間用 | `docs/`, `README.md` | 設計書・ガイドライン・運用手順 |
+| Claude 常時参照 | `.claude/rules/` | 毎リクエストで自動読み込み。コーディング規約・禁止事項など |
+| Claude オンデマンド参照 | `.claude/skills/` | 特定タスク実行時のみ読み込み。ワークフロー手順・ポリシー詳細など |
+| Claude 専門ワーカー | `.claude/agents/` | 独立コンテキストで動作。専門レビュワー等 |
+
+詳細は [CLAUDE.md](CLAUDE.md) の「文書分類ポリシー」セクションを参照。
 
 ---
 

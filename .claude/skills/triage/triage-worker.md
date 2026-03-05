@@ -1,6 +1,3 @@
----
-paths: "triage/**/workers/**/02_work_log.md,triage/**/workers/**/03_scan_report.md"
----
 # トリアージワーカーセッション ルール
 
 ## あなたの役割
