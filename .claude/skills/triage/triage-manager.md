@@ -1,6 +1,3 @@
----
-paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_dispatch_log.md,triage/**/03_report.md"
----
 # トリアージマネージャーセッション ルール
 
 ## あなたの役割

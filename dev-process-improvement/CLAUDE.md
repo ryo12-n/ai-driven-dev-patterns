@@ -90,6 +90,20 @@
 
 ---
 
+## 文書分類ポリシー
+
+ドキュメントの読者と読み込み頻度に応じて適切な場所に配置する。ルートの CLAUDE.md に定義されたポリシーに準じる。
+
+| 分類 | 読者 | 配置先 | 用途例 |
+|------|------|--------|--------|
+| Claude 常時参照 | Claude | `.claude/rules/` | セッションルール（l1-manager, l2-worker 等） |
+| Claude オンデマンド参照 | Claude | `.claude/skills/`（ルート側） | トリアージポリシー等、特定タスク時のみ必要なもの |
+| 人間用 | 人間 | `docs/`, `README.md` | workflow.md、運用手順 |
+
+**判断基準**: 「毎回のリクエストで参照が必要か？」→ Yes なら `rules/`、No なら `skills/`。
+
+---
+
 ## リポジトリ境界ポリシー
 
 本ディレクトリ（dev-process-improvement）は ai-driven-dev-patterns（ルート）のコンテキストに **依存する側** である。

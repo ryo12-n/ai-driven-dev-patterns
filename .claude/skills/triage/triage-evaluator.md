@@ -1,6 +1,3 @@
----
-paths: "triage/**/workers/**/04_eval_report.md"
----
 # トリアージ評価者セッション ルール
 
 ## あなたの役割
