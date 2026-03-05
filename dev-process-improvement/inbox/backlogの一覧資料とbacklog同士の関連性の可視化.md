@@ -1,1 +1,0 @@
- backlogの全体をさっと把握できる資料が欲しい。backlog直下にreadmeでもおくか。
