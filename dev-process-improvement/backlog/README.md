@@ -38,6 +38,7 @@
 | [AI補助自動化ツール検討](./AI補助自動化ツール検討.md) | :blue_circle: 低 | 候補 | dev-process-improvement | 2026-03-06 | AI 作業補助のツール自動化候補一覧作成と検討 |
 | [Building-trust-through-layers活用検討](./Building-trust-through-layers活用検討.md) | :blue_circle: 低 | 候補 | ai-driven-dev-patterns | 2026-03-06 | Building trust through layers の適用方法検討 |
 | [ディレクトリ構成最適化検討](./ディレクトリ構成最適化検討.md) | :blue_circle: 低 | 候補 | ai-driven-dev-patterns | 2026-03-06 | ディレクトリ構成のベストプラクティス検討 |
+| [トリアージ情報欠損リスク評価ステップ追加](./トリアージ情報欠損リスク評価ステップ追加.md) | :yellow_circle: 中 | 候補 | dev-process-improvement | 2026-03-06 | 削除・統合候補の情報欠損リスクを評価する専用ワーカーセット追加 |
 
 ## backlog と課題管理 CSV の関係
 
