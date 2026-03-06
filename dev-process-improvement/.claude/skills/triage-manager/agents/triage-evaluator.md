@@ -1,5 +1,7 @@
 ---
-paths: "triage/**/workers/**/06_eval_report.md"
+name: triage-evaluator
+description: 'トリアージ評価者としてワーカーの走査結果を評価し、マネージャーに報告する'
+tools: ["Read", "Write", "Edit", "Glob", "Grep"]
 ---
 # トリアージ評価者セッション ルール
 

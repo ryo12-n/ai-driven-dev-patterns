@@ -1,5 +1,7 @@
 ---
-paths: "initiatives/**/05_eval_plan.md,initiatives/**/06_eval_report.md,initiatives/**/07_issues.md"
+name: l2-evaluator
+description: 'L2評価者としてワーカーの作業成果を評価し、報告する'
+tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 ---
 # L2 ワーカーセッション（評価）ルール
 

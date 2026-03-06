@@ -1,8 +1,11 @@
+---
+paths: ".claude/skills/**/*.md"
+---
 # トリアージ標準ポリシーガイドライン
 
 > **このファイルの位置づけ**
 > セッションタイプ間で共通するライフサイクルパターン・ペアリング要件・準拠チェック基準を定義する。
-> `.claude/rules/*.md` のロール定義が個々のルールの正の情報源であり、本ガイドラインはそれらの横断的な整合性を担保するための基準文書である。
+> `.claude/skills/` 配下のスキル・エージェント定義が個々のルールの正の情報源であり、本ガイドラインはそれらの横断的な整合性を担保するための基準文書である。
 
 ---
 
@@ -95,16 +98,16 @@
 
 ## 3. トリアージ走査用チェックリスト（TG-008）
 
-トリアージセッションで、ロール定義（`.claude/rules/*.md`）やセッションルールがガイドラインに準拠しているかを確認するためのチェックリスト。
+トリアージセッションで、ロール定義（`.claude/skills/` 配下のスキル・エージェント定義）やセッションルールがガイドラインに準拠しているかを確認するためのチェックリスト。
 
 ### 3.1 走査対象
 
-- `.claude/rules/l1-manager.md`
-- `.claude/rules/l2-worker.md`
-- `.claude/rules/l2-evaluator.md`
-- `.claude/rules/triage-manager.md`
-- `.claude/rules/triage-worker.md`
-- `.claude/rules/triage-evaluator.md`
+- `.claude/skills/l1-manager/SKILL.md`
+- `.claude/skills/l1-manager/agents/l2-worker.md`
+- `.claude/skills/l1-manager/agents/l2-evaluator.md`
+- `.claude/skills/triage-manager/SKILL.md`
+- `.claude/skills/triage-manager/agents/triage-worker.md`
+- `.claude/skills/triage-manager/agents/triage-evaluator.md`
 - 新規作成または変更されたロール定義ファイル（`roles/*.md` を含む）
 
 ### 3.2 チェック項目

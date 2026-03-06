@@ -1,5 +1,7 @@
 ---
-paths: "initiatives/**/03_work_log.md,initiatives/**/04_work_report.md,initiatives/**/07_issues.md"
+name: l2-worker
+description: 'L2ワーカーとしてタスクを実行し、作業履歴と作業報告書を記録する'
+tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 ---
 # L2 ワーカーセッション（実施）ルール
 
