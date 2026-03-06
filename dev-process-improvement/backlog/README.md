@@ -26,6 +26,18 @@
 | [関連ファイル一覧セクション横展開](./関連ファイル一覧セクション横展開.md) | :blue_circle: 低 | 候補 | dev-process-improvement | 2026-03-05 | ルールファイルに関連ファイル一覧を追加し連動更新漏れを防止 |
 | [長文rulesのコンテキストコスト最適化](./長文rulesのコンテキストコスト最適化.md) | :yellow_circle: 中 | 候補 | 横断 | 2026-03-06 | 長文 rules の skills 化によるコンテキスト圧迫の解消 |
 | [高度な並列化と協調プロトコル統合](./高度な並列化と協調プロトコル統合.md) | :yellow_circle: 中 | 候補 | ai-driven-dev-patterns | 2026-03-02 | 同一シナリオ内の複数 feature_builder 並列実行と協調プロトコル統合 |
+| [TG-008チェック基準のルール変更連動更新](./TG-008チェック基準のルール変更連動更新.md) | :red_circle: 高 | 候補 | dev-process-improvement | 2026-03-06 | ルール変更時の TG-008 基準連動更新の標準化 |
+| [workflow-md更新プロセス整備](./workflow-md更新プロセス整備.md) | :red_circle: 高 | 候補 | dev-process-improvement | 2026-03-06 | ルール変更後の workflow.md 更新漏れ防止プロセス整備 |
+| [backlogテンプレート凡例強化](./backlogテンプレート凡例強化.md) | :yellow_circle: 中 | 候補 | dev-process-improvement | 2026-03-06 | backlog テンプレートの emoji 不統一・対象リポ欠損の改善 |
+| [triage-evaluator対称性改善](./triage-evaluator対称性改善.md) | :yellow_circle: 中 | 候補 | dev-process-improvement | 2026-03-06 | triage-evaluator の壁打ちフェーズ・知見記録セクション追加 |
+| [ガイドラインとルールファイルの二重管理リスク対策](./ガイドラインとルールファイルの二重管理リスク対策.md) | :yellow_circle: 中 | 候補 | dev-process-improvement | 2026-03-06 | ガイドラインと個別ルールのバージョン管理不整合リスク対策 |
+| [リネーム施策メタルール横断検証スコープ拡大](./リネーム施策メタルール横断検証スコープ拡大.md) | :yellow_circle: 中 | 候補 | dev-process-improvement | 2026-03-06 | テンプレート変更施策の検証スコープにメタルール検証を追加 |
+| [ルール変更施策の標準タスクパターン化](./ルール変更施策の標準タスクパターン化.md) | :yellow_circle: 中 | 候補 | dev-process-improvement | 2026-03-06 | 調査→文書化→ルール反映→workflow更新の定型パターン化 |
+| [リンク整合性チェック標準化](./リンク整合性チェック標準化.md) | :yellow_circle: 中 | 候補 | dev-process-improvement | 2026-03-06 | ドキュメント内リンクの実在確認を機械化・チェックリスト化 |
+| [知見集約テーブル発見元列のinitiatives逆移植](./知見集約テーブル発見元列のinitiatives逆移植.md) | :blue_circle: 低 | 候補 | dev-process-improvement | 2026-03-06 | triage の発見元 Set 列を initiatives テンプレートにも追加 |
+| [AI補助自動化ツール検討](./AI補助自動化ツール検討.md) | :blue_circle: 低 | 候補 | dev-process-improvement | 2026-03-06 | AI 作業補助のツール自動化候補一覧作成と検討 |
+| [Building-trust-through-layers活用検討](./Building-trust-through-layers活用検討.md) | :blue_circle: 低 | 候補 | ai-driven-dev-patterns | 2026-03-06 | Building trust through layers の適用方法検討 |
+| [ディレクトリ構成最適化検討](./ディレクトリ構成最適化検討.md) | :blue_circle: 低 | 候補 | ai-driven-dev-patterns | 2026-03-06 | ディレクトリ構成のベストプラクティス検討 |
 
 ## backlog と課題管理 CSV の関係
 
