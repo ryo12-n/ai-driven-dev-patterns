@@ -1,0 +1,5 @@
+Building trust through layersの考え方を具体的にどのように利用できるか、その方法を考えたい。
+まずはあなたと私の壁打ちでブラッシュアップしていこう。
+適用対象のディレクトリはai-driven-dev-patternsとして、具体的にどのようにフィットさせていけるのか考えよう。
+まずは段階的に考えたいので、どのようなステップでどのような完了条件でどのような成果物を作成すれば、ai-driven-dev-patternsへのフィットを実現できるのかを壁打ちしよう
+成果物は青写真としてdev-process-improvement/docs/draft_idea/Building_trust through_layers/配下に作成するのはどうかな？
