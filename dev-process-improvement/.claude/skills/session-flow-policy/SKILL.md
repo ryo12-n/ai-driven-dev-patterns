@@ -1,3 +1,8 @@
+---
+name: session-flow-policy
+description: '新セッションタイプの作成・.claude/skills/ 配下のスキル/エージェント構成の変更時に参照するポリシー'
+user-invocable: false
+---
 # セッションフロー作成ポリシー
 
 ## 適用対象
@@ -129,7 +134,7 @@ user-invocable: true
 - [ ] ペアリングの対称性要件を満たしている
 - [ ] `docs/workflow.md` に新セッションタイプのフローを追記した
 - [ ] コミットメッセージ規約（`commit-message.md`）に新セッションタイプを追加した（必要な場合）
-- [ ] `triage-standard-policy-guideline.md` の適用マトリクスに新セッションタイプを追加した（必要な場合）
+- [ ] `.claude/skills/triage-standard-policy/SKILL.md` の適用マトリクスに新セッションタイプを追加した（必要な場合）
 
 ---
 
