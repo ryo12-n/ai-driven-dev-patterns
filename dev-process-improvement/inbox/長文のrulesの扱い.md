@@ -2,6 +2,18 @@
 また、重要な知見なので、クロード管理のガイドラインの目につく箇所へ追記しておきたい。
 readmeなどにも追記しておきたい。両方のディレクトリの。
 
+## `.claude/rules/` と skills の重要な挙動まとめ
+
+- `.claude/rules/` 配下のファイルは**すべて自動読み込み対象**（サブディレクトリも再帰的に検出） [code.claude](https://code.claude.com/docs/ja/memory)
+- `paths` なし → **セッション開始時に全文読み込み、常時コンテキスト常駐** [zenn](https://zenn.dev/tmasuyama1114/articles/claude_code_dynamic_rules)
+- `paths` あり → マッチするファイルにアクセスしたとき読み込み（遅延読み込み） [note](https://note.com/ai_driven/n/n1160202e5e42)
+- **一度読み込まれた rules は、その後マッチしないファイルに移動してもコンテキストから消えない** [zenn](https://zenn.dev/trust_delta/articles/claude-code-rules-scope-bug)
+- 大きなドキュメント（500行超）は skills 化すべき：セッション開始時は `description` だけ読み込み（約50トークン） [paddo](https://paddo.dev/blog/claude-skills-controllability-problem/)
+- **skills のデフォルトは自動呼び出し**：Claude が `description` を見て必要と判断したら自動で呼ぶ（`disable-model-invocation: false`） [code.claude](https://code.claude.com/docs/ja/skills)
+- 手動呼び出しのみにしたいなら `disable-model-invocation: true` を設定 [zenn](https://zenn.dev/takuh/articles/312039951b81c3)
+
+
+
 このリポジトリ、かなりちゃんと整備されてますね。`.claude/rules/` の使い方として**とても良い構成例**です。
 
 ## 良いポイント
