@@ -1,5 +1,5 @@
 ---
-paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_dispatch_log.md,triage/**/03_report.md"
+paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_dispatch_log.md,triage/**/03_report.md,triage/**/04_gate_review.md"
 ---
 # トリアージマネージャーセッション ルール
 
@@ -18,9 +18,10 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
    - `inbox/ref_*.md`（参照物ポインター）がある場合は対応する `refs/` の内容も確認する
 3. 調査結果をもとに `01_plan.md` を作成する（今回の重点・ワーカー割り当てを決める）
 4. ワーカーセットを作成・ディスパッチする（下記「ワーカーのディスパッチ」を参照）
-5. 全セット完了後、ワーカーのスキャンレポートと評価レポートを集約して `03_report.md` を作成する
-6. `03_report.md` を **PR として提出してユーザーにレビューを依頼する**
-7. レビュー承認後、backlog への追加・変更をユーザーに確認してから実施する
+5. 全セット完了後、ワーカーのスキャンレポートと評価レポートを集約して `03_report.md` を作成する（知見集約・課題集約セクションを含む）
+6. `04_gate_review.md` にゲート判定を記載する（知見ルーティング・課題CSV転記を含む）
+7. `03_report.md` を **PR として提出してユーザーにレビューを依頼する**
+8. レビュー承認後、backlog への追加・変更をユーザーに確認してから実施する
 
 ---
 
@@ -67,8 +68,8 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 ### ワーカー成果物の確認観点（evaluator起動前）
 
 - `01_tasks.md` のタスクが完了・スキップ・ブロックのいずれかに分類されているか
-- `03_scan_report.md` に各TGタスクの構造化された走査結果が記載されているか
-- CSV に起票された課題が適切にフォーマットされているか
+- `04_scan_report.md` に各TGタスクの構造化された走査結果が記載されているか
+- `07_issues.md` に起票された課題が適切にフォーマットされているか
 
 成果物の品質が不十分と判断した場合は、evaluator を起動せずに差し戻しを検討する。
 
@@ -76,9 +77,36 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 
 全セット完了後、以下の手順で `03_report.md` を作成する:
 
-1. 各 `workers/set-N/03_scan_report.md` の走査結果を TG タスク別にマージする
-2. 各 `workers/set-N/04_eval_report.md` の評価結果を「Worker Set サマリ」セクションに反映する
-3. 評価で指摘された不備がある場合は、対応方針を決定してレポートに記載する
+1. 各 `workers/set-N/04_scan_report.md` の走査結果を TG タスク別にマージする
+2. 各 `workers/set-N/06_eval_report.md` の評価結果を「Worker Set サマリ」セクションに反映する
+3. 各 `workers/set-N/06_eval_report.md` の「評価中の知見」と `04_scan_report.md` の「判断・気づき」を `03_report.md` の知見集約セクションに集約する
+4. 各 `workers/set-N/07_issues.md` の課題を `03_report.md` の課題集約セクションに集約し、CSV転記を実施する
+5. 評価で指摘された不備がある場合は、対応方針を決定してレポートに記載する
+
+---
+
+## 知見集約手順
+
+`03_report.md` の知見集約セクションを記入する際、以下の手順で各セットの知見を集約する。
+
+1. 各 `workers/set-N/06_eval_report.md` の「評価中の知見」を読む
+2. 各 `workers/set-N/04_scan_report.md` の「判断・気づき」を読む
+3. 「ルール化候補」の各項目 → `03_report.md` の知見集約テーブルに転記（発見元 Set を記載）
+4. 「参考情報」の各項目 → 同テーブルに転記
+5. セット間で重複する知見は統合する
+6. `04_gate_review.md` の「必須把握事項」テーブルにルーティング先を付与して転記する
+
+---
+
+## 課題集約手順
+
+`03_report.md` の課題集約セクションを記入する際、以下の手順で各セットの課題を集約する。
+
+1. 各 `workers/set-N/07_issues.md` の未転記メモを読む
+2. 施策スコープ外・他のセッションでも再発しうる課題 → `プロセス改善_課題管理.csv` へ転記
+3. 転記済みの項目に `[転記済 ISS-XXX]` を記す
+4. 当セッション内だけで完結する軽微な修正メモ → 「転記不要」と判断
+5. `03_report.md` の課題集約セクションにワーカーセット別件数と転記済み課題を記載する
 
 ---
 
@@ -90,7 +118,10 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 | `triage/YYYYMMDD/01_plan.md` | 作成・記入（実施計画・ワーカー割り当て） |
 | `triage/YYYYMMDD/02_dispatch_log.md` | 追記（ディスパッチ履歴） |
 | `triage/YYYYMMDD/03_report.md` | 作成（集約レポート）→ PR として提出 |
+| `triage/YYYYMMDD/04_gate_review.md` | 作成（ゲート判定・知見ルーティング） |
 | `triage/YYYYMMDD/workers/set-N/01_tasks.md` | 作成（ワーカーへのタスク指示） |
+| `triage/YYYYMMDD/workers/set-N/06_eval_report.md` | 読み取りのみ（知見集約の入力） |
+| `triage/YYYYMMDD/workers/set-N/07_issues.md` | 読み取り＋転記済みマーク追記（課題集約） |
 | `inbox/*.md` | 処理済みアイテムを削除（git 履歴が証跡） |
 | `backlog/ideas.md` | 追記・変更（ユーザー承認後のみ） |
 
@@ -101,6 +132,9 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 - `triage/YYYYMMDD/` フォルダを作成してセッションを記録する
 - 事前調査を完了させてからワーカー割り当てを決定する
 - ワーカー＋評価者セットをディスパッチし、結果を集約する
+- 各ワーカーセットの知見を `03_report.md` の知見集約セクションに集約する
+- 各ワーカーセットの課題を `03_report.md` の課題集約セクションに集約し、CSV転記を実施する
+- `04_gate_review.md` にゲート判定を記載する
 - `03_report.md` を作成し、PR として提出してユーザーにレビューを依頼する
 - レビュー承認後、backlog の変更を実施する
 
@@ -108,8 +142,8 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 
 - L1・L2 の成果物（`initiatives/` 配下）は編集しない（読み取りのみ）
 - backlog の変更はユーザーレビュー前に行わない
-- ワーカーの成果物（`workers/set-N/02_work_log.md`、`03_scan_report.md`）は直接編集しない（読み取りのみ）
-- 評価者の成果物（`workers/set-N/04_eval_report.md`）は直接編集しない（読み取りのみ）
+- ワーカーの成果物（`workers/set-N/03_work_log.md`、`04_scan_report.md`）は直接編集しない（読み取りのみ）
+- 評価者の成果物（`workers/set-N/05_eval_plan.md`、`06_eval_report.md`）は直接編集しない（読み取りのみ）
 - `refs/` の本体ファイルは削除しない（対応する `inbox/ref_*.md` のみ削除可）
 
 ---
@@ -119,7 +153,7 @@ paths: "triage/**/00_pre_investigation.md,triage/**/01_plan.md,triage/**/02_disp
 - `00_pre_investigation.md` の調査を必ず完了させてから `01_plan.md` を書く
 - backlog の変更は **必ずユーザーレビュー後** に行う。勝手に変更しない
 - PR のタイトルは `triage: YYYYMMDD トリアージレポート` の形式にする
-- **課題は `プロセス改善_課題管理.csv` に直接起票する**（`07_issues.md` のような中間バッファを経由しない）
+- **課題フロー**: ワーカー・評価者は `07_issues.md` に起票 → マネージャーが `03_report.md` 作成時に集約 → CSV転記を実施する
 - **inbox の処理済みアイテム削除**: backlog への反映・却下など判断が完了した `inbox/*.md` は削除する（git 履歴が証跡）
   - `ref_*.md`（参照物ポインター）を削除する場合でも、対応する `refs/` の本体は削除しない。`refs/` の扱いは別途判断する
 - **refs/ の孤立エントリ確認**: `refs/` にポインターなし（対応する `inbox/ref_*.md` が存在しない）エントリがあればユーザーに内容を確認する
@@ -175,7 +209,9 @@ PR 作成後、以下の確認を行う：
 |---------|-------------|
 | `triage/_template/00_pre_investigation.md` | 事前調査の走査項目・テンプレート構成 |
 | `triage/_template/01_plan.md` | 実施計画のテンプレート構成 |
-| `triage/_template/03_report.md` | レポートのテンプレート構成 |
+| `triage/_template/03_report.md` | レポートのテンプレート構成（知見集約・課題集約セクション含む） |
+| `triage/_template/04_gate_review.md` | ゲート判定のテンプレート構成 |
+| `triage/_template/workers/_template/07_issues.md` | ワーカーセット別課題バッファのテンプレート |
 | `docs/workflow.md` | トリアージセッションフローの記述（人間向け可視化） |
 | `triage-worker.md` | ワーカーの作業フロー・担当ファイルに影響する変更の場合 |
 | `triage-evaluator.md` | 評価基準・レポート構成に影響する変更の場合 |
