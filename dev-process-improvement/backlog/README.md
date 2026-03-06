@@ -24,6 +24,7 @@
 | [全ロールファイルrole-format-guide準拠確認修正](./全ロールファイルrole-format-guide準拠確認修正.md) | :blue_circle: 低 | 候補 | ai-driven-dev-patterns | 2026-03-04 | 全ロールファイルの role-format-guide 準拠度の統一 |
 | [北村さんの取り組みを取り込む](./北村さんの取り組みを取り込む.md) | :blue_circle: 低 | 候補 | ai-driven-dev-patterns | 2026-03-02 | 先進的な AI 開発プラクティスの知見評価と統合可能要素の特定 |
 | [関連ファイル一覧セクション横展開](./関連ファイル一覧セクション横展開.md) | :blue_circle: 低 | 候補 | dev-process-improvement | 2026-03-05 | ルールファイルに関連ファイル一覧を追加し連動更新漏れを防止 |
+| [長文rulesのコンテキストコスト最適化](./長文rulesのコンテキストコスト最適化.md) | :yellow_circle: 中 | 候補 | 横断 | 2026-03-06 | 長文 rules の skills 化によるコンテキスト圧迫の解消 |
 | [高度な並列化と協調プロトコル統合](./高度な並列化と協調プロトコル統合.md) | :yellow_circle: 中 | 候補 | ai-driven-dev-patterns | 2026-03-02 | 同一シナリオ内の複数 feature_builder 並列実行と協調プロトコル統合 |
 
 ## backlog と課題管理 CSV の関係
