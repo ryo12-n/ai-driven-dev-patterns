@@ -1,5 +1,7 @@
 ---
-paths: ".claude/skills/**/*.md"
+name: triage-standard-policy
+description: 'トリアージ走査（TG-008）・ペアリング検証・ライフサイクル準拠チェック時に参照するガイドライン'
+user-invocable: false
 ---
 # トリアージ標準ポリシーガイドライン
 

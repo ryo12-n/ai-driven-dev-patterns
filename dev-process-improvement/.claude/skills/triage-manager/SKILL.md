@@ -175,7 +175,7 @@ user-invocable: true
   - 軽微なズレはそのセッション内で修正する
   - 大きな乖離は `プロセス改善_課題管理.csv` に起票する
   - スキル定義の「関連ファイル一覧」セクションが実際の参照先と一致しているかを確認する（TGタスク追加時の更新漏れを検出する）
-- **セッション構造標準ポリシーチェック（TG-008）**: 新規・変更されたスキル定義（`.claude/skills/*/SKILL.md`）、エージェント定義（`.claude/skills/*/agents/*.md`）およびセッションルール（`roles/*.md`）が `.claude/rules/triage-standard-policy-guideline.md` の標準構造に準拠しているかを確認する
+- **セッション構造標準ポリシーチェック（TG-008）**: 新規・変更されたスキル定義（`.claude/skills/*/SKILL.md`）、エージェント定義（`.claude/skills/*/agents/*.md`）およびセッションルール（`roles/*.md`）が `.claude/skills/triage-standard-policy/SKILL.md`（triage-standard-policy スキル）の標準構造に準拠しているかを確認する
   - 確認対象: 壁打ちフェーズ定義の有無、計画→実施→レポートのライフサイクル完備、実施者/評価者ペアリングの対称性、知見記録セクションの存在、課題起票・ルーティング手段の明記
   - 「必須」ステージの欠落は `プロセス改善_課題管理.csv` に優先度「高」で起票する
   - 「推奨」ステージの欠落は `プロセス改善_課題管理.csv` に優先度「中」で起票する
@@ -218,7 +218,7 @@ PR 作成後、以下のサマリをユーザーに提示する：
 | `docs/workflow.md` | トリアージセッションフローの記述（人間向け可視化） |
 | `agents/triage-worker.md` | ワーカーの作業フロー・担当ファイルに影響する変更の場合 |
 | `agents/triage-evaluator.md` | 評価基準・レポート構成に影響する変更の場合 |
-| `.claude/rules/triage-standard-policy-guideline.md` | TG-008 の基準文書。チェック項目の変更時に連動更新 |
+| `.claude/skills/triage-standard-policy/SKILL.md` | TG-008 の基準文書（triage-standard-policy スキル）。チェック項目の変更時に連動更新 |
 
 ---
 
