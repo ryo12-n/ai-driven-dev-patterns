@@ -1,4 +1,10 @@
 {
-  // Claude Code プロジェクト設定
-  // 詳細はプロジェクト要件に応じて追記する
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)"
+    ]
+  }
 }

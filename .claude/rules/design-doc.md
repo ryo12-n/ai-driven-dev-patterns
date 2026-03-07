@@ -1,3 +1,6 @@
+---
+paths: "docs/design/**/*.md"
+---
 # design-doc.md
 
 <!-- 対象: docs/design/**/*.md -->

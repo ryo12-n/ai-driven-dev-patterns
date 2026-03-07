@@ -1,3 +1,8 @@
+---
+name: claude-directory-guide
+description: 'Claude Code の .claude/ ディレクトリ標準構成ガイド。新規プロジェクトへの展開時や既存プロジェクトの構成見直し時に参照する'
+user-invocable: false
+---
 # Claude Code 標準ディレクトリ構成ガイド
 
 このドキュメントは Claude Code の `.claude/` ディレクトリおよび関連ファイルの標準構成をまとめたものである。
@@ -346,17 +351,23 @@ CLAUDE.md は全レベルが**加算的**に読み込まれる。矛盾する指
 
 ```
 .claude/
-├── settings.json              # コメントのみの空設定（JSONC 形式）
+├── settings.json              # $schema + deny ルール設定済み
 ├── commands/
 │   └── opsx/                  # OpenSpec カスタムコマンド（10ファイル）
 ├── rules/
-│   ├── claude-directory-guide.md   # 本ドキュメント
 │   ├── code-in-docs.md
+│   ├── commit-message.md
 │   ├── design-doc.md
-│   ├── role-format-guide.md
+│   ├── pr-creation-fallback.md
 │   └── sync.md
 ├── skills/
-│   └── openspec-*/SKILL.md    # OpenSpec スキル（10スキル）
+│   ├── claude-directory-guide/ # 本ドキュメント（rules/ から移動済み）
+│   ├── role-format-guide/      # ロール定義フォーマットガイド（rules/ から移動済み）
+│   ├── parallel-dev/           # worktree 並列開発ルール（rules/ から移動済み）
+│   ├── openspec-development/   # OpenSpec 開発ルール（rules/ から移動済み）
+│   ├── openspec-*/SKILL.md     # OpenSpec スキル（10スキル）
+│   ├── triage/                 # トリアージスキル
+│   └── dispatcher/             # ディスパッチャースキル
 └── （agents/, hooks/, plugins/ は未作成）
 
 CLAUDE.md                      # プロジェクトメモリ（ルート）
@@ -377,21 +388,11 @@ CLAUDE.md                      # プロジェクトメモリ（ルート）
 | `.claude/settings.local.json` | 低 | 個人設定が必要な場合に各自が作成 |
 | `.mcp.json` | 低 | MCP サーバーを利用する場合に追加 |
 
-#### 本リポジトリにあるが標準と異なるもの
-
-| 現状 | 差異の内容 | 対応方針 |
-|------|-----------|---------|
-| `commands/opsx/*.md` | commands は skills に統合済み。skills が推奨 | `skills/openspec-*` として skills 化済み。中長期的に commands を廃止し skills に一本化 |
-| `settings.json` が JSONC 形式 | 公式は純粋な JSON を使用。`$schema` も未設定 | 正式な JSON に修正し、`$schema` と有効な設定項目を追加すべき |
-| `rules/` に `paths:` 未使用 | 対象パスが明確なルールに paths を設定すればコンテキスト効率が向上 | code-in-docs.md、design-doc.md に paths フロントマター追加を検討 |
-
 ### 4.3 改善方針（優先度順）
 
-1. **settings.json の充実**（短期）: `$schema` の追加、パーミッション deny ルール（`.env` 等の機密ファイル排除）、頻用コマンドの allow ルールを追加。JSONC からの脱却
-2. **rules/ の paths 活用**（短期）: 対象パスが明確なルール（code-in-docs.md → `docs/**/*.md`、design-doc.md → `docs/design/**/*.md`）に `paths:` フロントマターを設定
-3. **agents/ ディレクトリの検討**（中期）: CLAUDE.md にサブエージェント戦略が明記されているため、`.claude/agents/` での管理体制への移行を検討
-4. **commands/ から skills/ への段階的移行**（中期）: `commands/opsx/` は下位互換で動作するが、将来的に skills に統一
-5. **hooks/ の導入**（低優先度）: 明確な自動化ニーズ（自動フォーマット、危険操作ブロック等）が発生した場合に導入
+1. **agents/ ディレクトリの検討**（中期）: CLAUDE.md にサブエージェント戦略が明記されているため、`.claude/agents/` での管理体制への移行を検討
+2. **commands/ から skills/ への段階的移行**（中期）: `commands/opsx/` は下位互換で動作するが、将来的に skills に統一
+3. **hooks/ の導入**（低優先度）: 明確な自動化ニーズ（自動フォーマット、危険操作ブロック等）が発生した場合に導入
 
 ---
 

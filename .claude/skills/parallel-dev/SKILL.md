@@ -1,3 +1,8 @@
+---
+name: parallel-dev
+description: 'worktree 並列開発ルール。dev_manager が複数ロールを git worktree ベースで並列起動する際に参照する'
+user-invocable: false
+---
 # worktree 並列開発ルール
 
 ## 目的

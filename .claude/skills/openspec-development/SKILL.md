@@ -1,5 +1,7 @@
 ---
-paths: "openspec/**"
+name: openspec-development
+description: 'OpenSpec 開発ルール。openspec/ 配下のファイル操作時に従うべきルール・フローを定義する'
+user-invocable: false
 ---
 # OpenSpec 開発ルール
 

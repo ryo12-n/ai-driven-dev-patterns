@@ -1,3 +1,8 @@
+---
+name: role-format-guide
+description: 'ロール定義ファイル (roles/*.md) のフォーマットガイド。新規ロール作成・既存ロールのレビュー時に参照する'
+user-invocable: false
+---
 # ロール定義フォーマットガイド
 
 ## 目的・適用対象

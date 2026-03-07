@@ -1,3 +1,6 @@
+---
+paths: "docs/**/*.md"
+---
 # code-in-docs.md
 
 <!-- 対象: docs/**/*.md -->
