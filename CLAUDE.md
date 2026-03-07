@@ -55,10 +55,8 @@
 
 - 改善ループ: `inbox/` → `backlog/` → dev_manager が自律的にトリアージ・施策化
 - 課題管理: `課題管理.csv` で独立管理
-- `dev-process-improvement/` ディレクトリへの参照・依存を一切持たないこと
-　　- 令和8年3月4日追記:しかしリポジトリ分離するまでは一次的に参照を許可する
-  - ルート配下のファイル（CLAUDE.md、.claude/rules/、roles/、sessions/ 等）に `dev-process-improvement` というパスを含めてはならない
-  - dev-process-improvement は将来的に別リポジトリへ分離する想定であり、分離後もルート側に変更が不要な状態を維持する
+- `dev-process-improvement` は独立リポジトリ（`https://github.com/ryo12-n/dev-process-improvement`）に分離済み
+  - 本リポジトリから `dev-process-improvement` への参照・依存を持たないこと
 
 ---
 
