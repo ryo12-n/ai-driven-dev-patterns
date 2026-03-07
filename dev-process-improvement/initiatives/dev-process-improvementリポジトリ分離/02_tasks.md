@@ -10,9 +10,9 @@
 
 | ID | タスク | 完了条件 | 優先度 | ステータス |
 |----|--------|---------|--------|-----------|
-| T-001 | `gh repo create ryo12-n/dev-process-improvement --public` で新リポを作成する。作成不可の場合は L1 に報告して停止する | GitHub 上にリポジトリが存在する | 🔴 | ⛔ |
-| T-002 | `dev-process-improvement/` 配下のコンテンツを一時ディレクトリにコピーし、新リポとして `git init` → 初回コミット → push する。コピー時に `initiatives/_template/` と `initiatives/_archive/` を含める。`initiatives/dev-process-improvementリポジトリ分離/` は除外する（本施策は親リポ側で管理中のため） | 新リポの main ブランチにコンテンツが存在する | 🔴 | ⛔ |
-| T-003 | 新リポ内のファイルで `dev-process-improvement/` プレフィックスのパス参照を検索し、ルート相対パスに修正する（例: `dev-process-improvement/docs/` → `docs/`）。README.md のセッション起動パスも修正する | `grep -r "dev-process-improvement/" .` で不要なプレフィックス参照が 0 件 | 🔴 | ⛔ |
+| T-001 | `gh repo create ryo12-n/dev-process-improvement --public` で新リポを作成する。作成不可の場合は L1 に報告して停止する | GitHub 上にリポジトリが存在する | 🔴 | ✅ |
+| T-002 | `dev-process-improvement/` 配下のコンテンツを一時ディレクトリにコピーし、新リポとして `git init` → 初回コミット → push する。コピー時に `initiatives/_template/` と `initiatives/_archive/` を含める。`initiatives/dev-process-improvementリポジトリ分離/` は除外する（本施策は親リポ側で管理中のため） | 新リポの main ブランチにコンテンツが存在する | 🔴 | ✅ |
+| T-003 | 新リポ内のファイルで `dev-process-improvement/` プレフィックスのパス参照を検索し、ルート相対パスに修正する（例: `dev-process-improvement/docs/` → `docs/`）。README.md のセッション起動パスも修正する | `grep -r "dev-process-improvement/" .` で不要なプレフィックス参照が 0 件 | 🔴 | ✅ |
 
 ### 親リポの参照更新
 
@@ -43,4 +43,4 @@
 
 ---
 **作成者**: L1
-**最終更新**: 2026-03-02
+**最終更新**: 2026-03-07
