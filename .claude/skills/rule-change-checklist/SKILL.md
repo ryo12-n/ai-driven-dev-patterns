@@ -6,7 +6,7 @@ user-invocable: false
 # ルール変更時の連動更新チェックリスト
 
 > **このファイルの位置づけ**
-> ルール変更を含む施策（`.claude/skills/` や `.claude/rules/` や `roles/` 配下のファイルを変更する施策）で、
+> ルール変更を含む施策（`.claude/skills/` や `.claude/rules/` や `.claude/agents/` 配下のファイルを変更する施策）で、
 > 連動更新の漏れを防ぐための標準チェックリスト。
 > dev_manager がタスクを含める際、または専門ロールが作業完了前に確認する際に使用する。
 
@@ -19,7 +19,7 @@ user-invocable: false
 ```
 1. 調査        — 現状の参照関係・影響範囲を把握する
 2. 文書化      — 設計・ガイドライン文書を作成する（必要な場合）
-3. ルール反映  — .claude/skills/ や .claude/rules/ や roles/ のファイルを変更する
+3. ルール反映  — .claude/skills/ や .claude/rules/ や .claude/agents/ のファイルを変更する
 4. 連動更新    — 以下のチェックリストに従い、関連ファイルを更新する
 ```
 
@@ -37,7 +37,7 @@ user-invocable: false
 
 ### 2. docs/ の更新
 
-`.claude/skills/` や `.claude/rules/` や `roles/` 配下のルール定義が正の情報源（Source of Truth）であり、`docs/` 配下のドキュメントはその人間向け可視化である。ルールファイルを変更した場合は、関連する `docs/` のドキュメントも合わせて更新する。
+`.claude/skills/` や `.claude/rules/` や `.claude/agents/` 配下のルール定義が正の情報源（Source of Truth）であり、`docs/` 配下のドキュメントはその人間向け可視化である。ルールファイルを変更した場合は、関連する `docs/` のドキュメントも合わせて更新する。
 
 - [ ] 変更内容が `docs/` のどのドキュメントに影響するかを特定した
 - [ ] 該当するドキュメントを更新した
@@ -90,8 +90,8 @@ user-invocable: false
 
 | ファイル | 連動更新の内容 |
 |---------|-------------|
-| `roles/dev_manager.md` | 「タスクリストに含める固定タスク」のチェックリスト参照 |
-| `roles/_base/common.md` | 作業完了前チェック手順に影響する変更の場合 |
+| `.claude/skills/dispatcher/SKILL.md` | 「タスクリストに含める固定タスク」のチェックリスト参照 |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` | 作業完了前チェック手順に影響する変更の場合 |
 | `docs/` 配下の関連ドキュメント | チェックリスト手順の記述 |
 
 ---

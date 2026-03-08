@@ -1,6 +1,6 @@
 ---
 name: role-format-guide
-description: 'ロール定義ファイル (roles/*.md) のフォーマットガイド。新規ロール作成・既存ロールのレビュー時に参照する'
+description: 'ロール定義ファイル (.claude/agents/*.md) のフォーマットガイド。新規ロール作成・既存ロールのレビュー時に参照する'
 user-invocable: false
 ---
 # ロール定義フォーマットガイド
@@ -10,7 +10,7 @@ user-invocable: false
 **目的**: ロール定義ファイルの構成を統一し、Claude がロールのスコープ・作業フロー・制約を素早く把握できるようにする。
 
 **適用対象**:
-- `roles/*.md` — ai-driven-dev-patterns のエージェントロール（bug_fixer, reviewer など）
+- `.claude/agents/*.md` — ai-driven-dev-patterns のエージェントロール（bug_fixer, reviewer など）
 
 新しいロール定義ファイルを作成する際は、このガイドを雛形として使うこと。
 

@@ -89,15 +89,15 @@ sessions/   ← セッション記録（plan / log / report / issues）
 
 | ロール | 役割 | 定義 |
 |--------|------|------|
-| `dev_manager` | オーケストレーター。ロール起動・計画・フェーズゲート | [roles/dev_manager.md](roles/dev_manager.md) |
-| `feature_builder` | 新機能の実装 | [roles/feature_builder.md](roles/feature_builder.md) |
-| `test_writer` | テストカバレッジ拡充・エッジケース発見 | [roles/test_writer.md](roles/test_writer.md) |
-| `reviewer` | コードレビュー・設計評価・品質確認 | [roles/reviewer.md](roles/reviewer.md) |
-| `bug_fixer` | バグ修正（最小差分） | [roles/bug_fixer.md](roles/bug_fixer.md) |
-| `documentarian` | README・設計書・CHANGELOG 整備 | [roles/documentarian.md](roles/documentarian.md) |
-| `refactorer` | リファクタリング・DRY 化 | [roles/refactorer.md](roles/refactorer.md) |
-| `optimizer` | パフォーマンス改善・最適化 | [roles/optimizer.md](roles/optimizer.md) |
-| `openspec_specialist` | OpenSpec 仕様ライフサイクル管理 | [roles/openspec_specialist.md](roles/openspec_specialist.md) |
+| `dev_manager` | オーケストレーター。ロール起動・計画・フェーズゲート | [.claude/skills/dispatcher/SKILL.md](.claude/skills/dispatcher/SKILL.md) |
+| `feature_builder` | 新機能の実装 | [.claude/agents/feature-builder.md](.claude/agents/feature-builder.md) |
+| `test_writer` | テストカバレッジ拡充・エッジケース発見 | [.claude/agents/test-writer.md](.claude/agents/test-writer.md) |
+| `reviewer` | コードレビュー・設計評価・品質確認 | [.claude/agents/reviewer.md](.claude/agents/reviewer.md) |
+| `bug_fixer` | バグ修正（最小差分） | [.claude/agents/bug-fixer.md](.claude/agents/bug-fixer.md) |
+| `documentarian` | README・設計書・CHANGELOG 整備 | [.claude/agents/documentarian.md](.claude/agents/documentarian.md) |
+| `refactorer` | リファクタリング・DRY 化 | [.claude/agents/refactorer.md](.claude/agents/refactorer.md) |
+| `optimizer` | パフォーマンス改善・最適化 | [.claude/agents/optimizer.md](.claude/agents/optimizer.md) |
+| `openspec_specialist` | OpenSpec 仕様ライフサイクル管理 | [.claude/agents/openspec-specialist.md](.claude/agents/openspec-specialist.md) |
 
 ---
 
@@ -121,7 +121,7 @@ sessions/   ← セッション記録（plan / log / report / issues）
 |------------|--------|------|
 | 環境構築 | [docs/dev-setup.md](docs/dev-setup.md) | 人間 |
 | セッション詳細・プロンプト例集 | [docs/session-guide.md](docs/session-guide.md) | 人間 |
-| 各ロールの詳細定義 | [roles/](roles/) | 人間 |
+| 各ロールの詳細定義 | [.claude/agents/](.claude/agents/) | 人間 |
 | セッションフロー設計書 | [docs/design/session-operation-flow.md](docs/design/session-operation-flow.md) | 人間 |
 | upstream 同期手順 | [docs/sync-guide.md](docs/sync-guide.md) | 人間 |
 | Claude Code ディレクトリ構成 | [.claude/rules/claude-directory-guide.md](.claude/rules/claude-directory-guide.md) | Claude（常時） |

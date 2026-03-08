@@ -3,9 +3,67 @@ paths: "triage/**/*.md"
 ---
 # コミットメッセージルール
 
-## ベースルール
+## ベースルール: Conventional Commits
 
-`roles/_base/common.md` セクション5「コミット規約」に従う（Conventional Commits 形式）。
+本リポジトリでは **Conventional Commits** スタイルを採用する。
+
+### コミットメッセージの形式
+
+```
+<type>(<scope>): <summary>
+
+<body>（任意）
+
+<footer>（任意）
+DT-XXX（dev_manager から割り当てられたタスクIDがある場合）
+```
+
+### DT-XXX フッタルール
+
+dev_manager から DT-XXX 形式のタスク指示を受けている場合、コミットメッセージの footer に `DT-XXX` を含めること。これによりタスク単位のトレーサビリティを確保する。
+
+### type の種類
+
+| type | 用途 |
+|------|------|
+| `feat` | 新機能の追加 |
+| `fix` | バグ修正 |
+| `refactor` | 振る舞いを変えないリファクタリング |
+| `test` | テストの追加・修正 |
+| `perf` | パフォーマンス改善 |
+| `docs` | ドキュメントの追加・修正 |
+| `chore` | ビルド・CI・設定ファイルの変更 |
+
+### scope の例
+
+- `src`: `src/` 配下の変更
+- `tests`: `tests/` 配下の変更
+- `openspec`: `openspec/` 配下の変更
+- `docs`: `docs/` 配下の変更
+- `agents`: `.claude/agents/` 配下の変更
+
+### コミットメッセージの例
+
+```
+feat(src): ユーザー認証パターンを追加
+
+- src/auth/ ディレクトリを新規作成
+- JWT 認証の実装パターンを追加
+- 対応するテストを tests/auth/ に追加
+```
+
+### コミット実行例
+
+```bash
+git add src/auth.py tests/test_auth.py
+git commit -m "$(cat <<'EOF'
+feat(src): ユーザー認証パターンを追加
+
+JWT 認証の実装パターンを追加
+対応するテスト5件を追加、全パス
+EOF
+)"
+```
 
 ## セッションロール別プレフィックス
 

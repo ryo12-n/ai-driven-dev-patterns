@@ -22,7 +22,7 @@ flowchart TB
 
     subgraph DevSession["開発セッション"]
         Dispatcher["/dispatcher<br/>(.claude/skills/dispatcher/)"]
-        DevMgr["dev_manager<br/>(roles/dev_manager.md)"]
+        DevMgr["dev_manager<br/>(.claude/skills/dispatcher/SKILL.md)"]
 
         subgraph Scenario["5シナリオ"]
             S1["S1: 要件定義〜設計"]
@@ -130,7 +130,7 @@ sequenceDiagram
 
 | 知見の種類 | ルーティング先 | 例 |
 |-----------|-------------|-----|
-| セッション横断のルール・パターン | `roles/` or `.claude/rules/` | コーディング規約の追加 |
+| セッション横断のルール・パターン | `.claude/agents/` or `.claude/rules/` | コーディング規約の追加 |
 | 判断保留の気づき | `inbox/` | 次回トリアージで判断してほしい問い |
 | 具体的な次施策候補 | `backlog/` | 新機能の提案 |
 | 施策横断で再発しうる課題 | `課題管理.csv` | ツールの制約、構造的問題 |
@@ -159,8 +159,8 @@ flowchart LR
 
 | ディレクトリ | 役割 | 主な利用者 |
 |-------------|------|-----------|
-| `roles/` | ロール定義（実行プロンプト） | dev_manager, 各専門ロール |
-| `roles/_base/common.md` | 全ロール共通指示 | 全専門ロール |
+| `.claude/agents/` | エージェント定義（実行プロンプト） | dispatcher, 各専門エージェント |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` | 全ロール共通指示 | 全専門ロール |
 | `.claude/skills/` | スキル定義（オンデマンド参照） | Claude |
 | `.claude/skills/dispatcher/` | シナリオ判定・ルーティング | 人間（エントリー） |
 | `.claude/skills/triage/` | トリアージセッション | 定期実行 |

@@ -46,7 +46,7 @@
 - [x] 孤立エントリ（対応する inbox/ref_*.md がないもの）：0 件
   - なし
 
-## ルール・ロール整合性確認（.claude/rules/*.md ↔ roles/*.md）
+## ルール・ロール整合性確認（.claude/rules/*.md ↔ .claude/agents/*.md）
 
 - [x] 乖離あり（内容：軽微な乖離）
   - `design-doc.md` と `code-in-docs.md` がコメントのみの空テンプレート（documentarian.md が参照するが実体なし）

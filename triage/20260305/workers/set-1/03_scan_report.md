@@ -47,7 +47,7 @@
 | ID | タイトル | 現ステータス | 対応方針案 | 優先度 |
 |----|---------|------------|-----------|-------|
 | ISS-001 | 廃止対象ファイルの参照更新では能動的運用ルールと歴史的記録を区別する | 起票 | `.claude/rules/` にファイル廃止時の判断基準（能動的運用ルール vs 歴史的記録）を明文化する。backlog 施策として起票が適切 | 中 |
-| ISS-002 | タスク定義時に既存インフラの存在確認を完了条件に含める | 起票 | `roles/dev_manager.md` のタスク定義セクションに「既存リソースの存在確認」を追記。次回 dev_manager.md 改訂時にあわせて対応 | 低 |
+| ISS-002 | タスク定義時に既存インフラの存在確認を完了条件に含める | 起票 | `.claude/skills/dispatcher/SKILL.md` のタスク定義セクションに「既存リソースの存在確認」を追記。次回 dev_manager.md 改訂時にあわせて対応 | 低 |
 | ISS-003 | 成功基準の検証はファイル存在確認と内容の意味的確認の2段階で行う | 起票 | triage-evaluator.md 等の評価ロールに2段階検証手順を明記。低優先度だが評価品質向上に寄与 | 低 |
 
 **補足**: 3件とも「プロセス改善の知見」カテゴリ。ISS-001 は優先度中のため早期の backlog 施策化を推奨。ISS-002, ISS-003 は低優先度で次回改訂時に対応可能。
@@ -72,16 +72,16 @@
 |------------|---------|------|
 | `.claude/rules/design-doc.md` | HTMLコメントのみで実質的なルール記述なし。documentarian.md が「設計書の構成ルール（mermaid図必須・本文コード禁止等）」として参照 | CSV起票（ISS-004） |
 | `.claude/rules/code-in-docs.md` | HTMLコメントのみで実質的なルール記述なし。documentarian.md が「コード混入防止ルール」として参照 | CSV起票（ISS-004） |
-| `roles/bug_fixer.md` (2箇所) | `<!-- TODO: 本リポジトリのCIスクリプトパスに修正 -->` — CI環境構築前のプレースホルダー | 既知TODO。対応不要（CI構築時に解消） |
-| `roles/refactorer.md` (1箇所) | 同上 | 同上 |
-| `roles/optimizer.md` (1箇所) | 同上 | 同上 |
-| `roles/test_writer.md` (2箇所) | 同上 | 同上 |
-| `roles/feature_builder.md` (1箇所) | 同上 | 同上 |
-| `roles/_base/common.md` (1箇所) | 同上 | 同上 |
-| `roles/reviewer.md` (4箇所) | `<!-- TODO(ISS-002): openspec統合未定義 -->` — OpenSpec統合確定後に対応 | ISS-002 で管理済み。追加対応不要 |
-| `roles/documentarian.md` (4箇所) | 同上 | 同上 |
-| `roles/feature_builder.md` (3箇所) | 同上 | 同上 |
-| `roles/_base/common.md` (1箇所) | 同上 | 同上 |
+| `.claude/agents/bug-fixer.md` (2箇所) | `<!-- TODO: 本リポジトリのCIスクリプトパスに修正 -->` — CI環境構築前のプレースホルダー | 既知TODO。対応不要（CI構築時に解消） |
+| `.claude/agents/refactorer.md` (1箇所) | 同上 | 同上 |
+| `.claude/agents/optimizer.md` (1箇所) | 同上 | 同上 |
+| `.claude/agents/test-writer.md` (2箇所) | 同上 | 同上 |
+| `.claude/agents/feature-builder.md` (1箇所) | 同上 | 同上 |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` (1箇所) | 同上 | 同上 |
+| `.claude/agents/reviewer.md` (4箇所) | `<!-- TODO(ISS-002): openspec統合未定義 -->` — OpenSpec統合確定後に対応 | ISS-002 で管理済み。追加対応不要 |
+| `.claude/agents/documentarian.md` (4箇所) | 同上 | 同上 |
+| `.claude/agents/feature-builder.md` (3箇所) | 同上 | 同上 |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` (1箇所) | 同上 | 同上 |
 
 ### 追加確認結果（乖離なし）
 

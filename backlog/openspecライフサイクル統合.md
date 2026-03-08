@@ -10,7 +10,7 @@
 
 ## 課題・背景
 
-既存の7ロール（feature_builder, test_writer, reviewer, bug_fixer, refactorer, optimizer, documentarian）に OpenSpec 連携部分の TODO が残存している（roles/ 内に計12箇所）。openspec_specialist のロール定義は整備済みだが、既存ロールとの連携プロトコルが未定義のため、仕様駆動開発の一貫したフローが確立されていない。
+既存の7ロール（feature_builder, test_writer, reviewer, bug_fixer, refactorer, optimizer, documentarian）に OpenSpec 連携部分の TODO が残存している（.claude/agents/ 内に計12箇所）。openspec_specialist のロール定義は整備済みだが、既存ロールとの連携プロトコルが未定義のため、仕様駆動開発の一貫したフローが確立されていない。
 
 課題管理.csv の ISS-006（プロセス改善_課題管理.csv 側）と ISS-002（ai-driven-dev-patterns 側）に関連。
 
@@ -22,6 +22,6 @@
 
 ## 補足・参考情報
 
-- `roles/dev_manager.md` のセクション 3.5 に OpenSpec 連携判断の基本フレームワークは定義済み
+- `.claude/skills/dispatcher/SKILL.md` のセクション 3.5 に OpenSpec 連携判断の基本フレームワークは定義済み
 - `docs/design/dev-workflow-overview.md` §5.1 の ISS-006 と対応
 - openspec_specialist の仕様→実装連携フロー（dev_manager.md 内）を基に各ロールの TODO を埋める形で実装可能

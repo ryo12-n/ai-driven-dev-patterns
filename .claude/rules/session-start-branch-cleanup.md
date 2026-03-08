@@ -2,7 +2,7 @@
 
 ## 適用対象
 
-- dev_manager セッション（`roles/dev_manager.md`）
+- dev_manager セッション（`.claude/skills/dispatcher/SKILL.md`）
 - トリアージセッション（`.claude/skills/triage/SKILL.md`）
 
 **サブエージェント（専門ロール: feature_builder, reviewer 等）は対象外**。サブエージェントは dev_manager からサブエージェントとして起動されるため、ブランチ管理は dev_manager の責務である。

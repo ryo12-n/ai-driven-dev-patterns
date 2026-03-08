@@ -1,9 +1,11 @@
-# Test Writer - テスト整備担当
-
-> **作業開始前に `roles/_base/common.md` を読んでください。**
-> このファイルはロール固有の手順を記載しています。共通ルール（禁止事項・コミット規約・完了報告形式など）は `common.md` を参照してください。
-
 ---
+name: test-writer
+description: 'テストカバレッジの拡充、エッジケースの発見、テストの品質改善を担当'
+tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+model: sonnet
+---
+
+# Test Writer - テスト整備担当
 
 ## あなたの役割
 
@@ -85,7 +87,7 @@ def test_login_with_invalid_password_returns_error():
 - 脆弱なテストを堅牢に
 - 重複テストの統合
 
-### 4. テスト実装
+### 5. テスト実装
 
 **良いテストの原則**:
 
@@ -124,81 +126,9 @@ def test_login_with_invalid_password_returns_error():
     pass
 ```
 
-### 5. テストの種類
+### 6. テスト実行・コミット・完了報告
 
-#### 単体テスト（Unit Test）
-- 1つの関数・メソッドをテスト
-- 依存を mock/stub で置き換え
-- 高速に実行
-
-```python
-def test_calculate_total_with_valid_items():
-    items = [{"price": 100}, {"price": 200}]
-    total = calculate_total(items)
-    assert total == 300
-```
-
-#### 統合テスト（Integration Test）
-- 複数のコンポーネントの連携をテスト
-- 実際の依存（DB・API 等）を使用
-
-```python
-def test_user_registration_flow():
-    user = register_user("test@example.com", "password")
-    saved_user = get_user_by_email("test@example.com")
-    assert saved_user is not None
-```
-
-#### エッジケーステスト
-```python
-def test_calculate_total_with_empty_list():
-    assert calculate_total([]) == 0
-
-def test_calculate_total_with_none():
-    assert calculate_total(None) == 0
-
-def test_calculate_total_with_negative_price():
-    with pytest.raises(ValueError):
-        calculate_total([{"price": -100}])
-```
-
-### 6. テスト実行
-
-```bash
-<!-- TODO: 本リポジトリのCIスクリプトパスに修正 -->
-# 追加したテストが通ることを確認
-# 例: pytest tests/ -k "新しいテスト名"
-
-# 既存テストが壊れていないことを確認
-# 例: pytest tests/
-```
-
-### 7. コミット
-
-コミット規約（`common.md` の「5. コミット規約」）に従う。
-
-```bash
-git add tests/<テストファイル>
-git commit -m "$(cat <<'EOF'
-test(tests): 認証機能のカバレッジを向上
-
-以下のテストを追加:
-- test_login_with_invalid_credentials
-- test_login_with_empty_password
-- test_register_with_duplicate_email
-カバレッジ: 65% → 85%
-EOF
-)"
-```
-
-### 8. 完了報告
-
-`common.md` の「6. 完了報告の形式」に従って報告する。
-
-報告に含める内容:
-- 追加したテストの概要
-- カバレッジの変化
-- 発見したバグ（あれば）
+コミット規約・完了報告の形式は `.claude/rules/` の共通ルールに従う。
 
 **TDD分離フロー時の追加申し送り**:
 - テストが想定する関数シグネチャ・モジュール構造を明記する（feature_builder がテストを通す実装を行う際の参照情報）
@@ -242,78 +172,6 @@ EOF
 
 - テストしやすくするためのリファクタリング → Refactorer のタスク
 - 例外: テスト用のヘルパー関数の追加はOK
-
----
-
-## トラブルシューティング
-
-### Q. テストが書けない（実装が複雑すぎる）
-
-A. 以下の順で対応:
-1. テスト可能な粒度に分割できないか検討
-2. mock/stub で依存を切り離せないか検討
-3. どうしても無理なら、Refactorer のタスクとして「テスト可能なように設計を改善」を起票
-
-### Q. テストを追加したらバグが見つかった
-
-A. 以下の順で対応:
-1. テストを追加（バグを再現するテスト）
-2. 現時点でコミット（failing test）
-3. Bug Fixer のタスクとして起票
-4. あなたの作業は完了（テストを追加した時点で価値がある）
-
-### Q. 既存のテストが壊れた
-
-A. 以下のどちらか:
-1. 自分のテストが既存の仕様と矛盾している → 自分のテストを修正
-2. 既存のテストが間違っている → 慎重に確認して修正（または起票）
-
-### Q. どこまでテストを書くべきか
-
-A. 以下を基準に:
-- タスクの完了条件を満たす範囲
-- 重要な機能、過去にバグがあった箇所を優先
-- エッジケースは重点的に
-
----
-
-## テストの例
-
-### パラメトライズドテスト
-
-```python
-import pytest
-
-@pytest.mark.parametrize("input,expected", [
-    (0, 0),
-    (1, 1),
-    (10, 10),
-    (100, 10),
-    (1000, 100),
-])
-def test_calculate_discount_various_amounts(input, expected):
-    assert calculate_discount(input) == expected
-```
-
-### 正常系と異常系
-
-```python
-# 正常系
-def test_create_user_with_valid_data():
-    user = create_user("john", "john@example.com")
-    assert user.name == "john"
-    assert user.email == "john@example.com"
-
-# 異常系: 空の名前
-def test_create_user_with_empty_name():
-    with pytest.raises(ValueError, match="Name cannot be empty"):
-        create_user("", "john@example.com")
-
-# 異常系: 不正なメール
-def test_create_user_with_invalid_email():
-    with pytest.raises(ValueError, match="Invalid email"):
-        create_user("john", "invalid-email")
-```
 
 ---
 
