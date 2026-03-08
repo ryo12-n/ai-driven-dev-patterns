@@ -172,15 +172,15 @@ dispatcher は入力を解析し、以下の情報を構造化して dev_manager
 
 | ロール | 役割 | 詳細定義 |
 |--------|------|---------|
-| `dev_manager` | 最上位オーケストレーター。コードは書かず、タスク分配・判断・コンテキスト中継・セッション管理を担当 | [roles/dev_manager.md](../roles/dev_manager.md) |
-| `feature_builder` | 新機能の実装を担当。タスク指示から機能実装タスクを選び、テストが通るまで実装を繰り返す | [roles/feature_builder.md](../roles/feature_builder.md) |
-| `test_writer` | テストカバレッジの拡充、エッジケースの発見、テストの品質改善を担当 | [roles/test_writer.md](../roles/test_writer.md) |
-| `reviewer` | 直近のコミットを監視し、設計問題・バグリスク・改善点を発見してタスクとして起票 | [roles/reviewer.md](../roles/reviewer.md) |
-| `bug_fixer` | 失敗テスト・既知バグの修正を担当。最小差分での修正を心がけ、既存機能を壊さない | [roles/bug_fixer.md](../roles/bug_fixer.md) |
-| `documentarian` | README、CHANGELOG、設計書、進捗サマリーなどのドキュメントを整備 | [roles/documentarian.md](../roles/documentarian.md) |
-| `refactorer` | 重複コードの統合、設計改善、DRY化。振る舞いを変えずにコード品質を改善する | [roles/refactorer.md](../roles/refactorer.md) |
-| `optimizer` | パフォーマンス改善、ビルド高速化、出力品質の向上。計測→改善→計測のサイクルを回す | [roles/optimizer.md](../roles/optimizer.md) |
-| `openspec_specialist` | OpenSpec の仕様ライフサイクル全体を担当。仕様の作成・更新・検証・アーカイブを行う | [roles/openspec_specialist.md](../roles/openspec_specialist.md) |
+| `dev_manager` | 最上位オーケストレーター。コードは書かず、タスク分配・判断・コンテキスト中継・セッション管理を担当 | [.claude/skills/dispatcher/SKILL.md](../.claude/skills/dispatcher/SKILL.md) |
+| `feature_builder` | 新機能の実装を担当。タスク指示から機能実装タスクを選び、テストが通るまで実装を繰り返す | [.claude/agents/feature-builder.md](../.claude/agents/feature-builder.md) |
+| `test_writer` | テストカバレッジの拡充、エッジケースの発見、テストの品質改善を担当 | [.claude/agents/test-writer.md](../.claude/agents/test-writer.md) |
+| `reviewer` | 直近のコミットを監視し、設計問題・バグリスク・改善点を発見してタスクとして起票 | [.claude/agents/reviewer.md](../.claude/agents/reviewer.md) |
+| `bug_fixer` | 失敗テスト・既知バグの修正を担当。最小差分での修正を心がけ、既存機能を壊さない | [.claude/agents/bug-fixer.md](../.claude/agents/bug-fixer.md) |
+| `documentarian` | README、CHANGELOG、設計書、進捗サマリーなどのドキュメントを整備 | [.claude/agents/documentarian.md](../.claude/agents/documentarian.md) |
+| `refactorer` | 重複コードの統合、設計改善、DRY化。振る舞いを変えずにコード品質を改善する | [.claude/agents/refactorer.md](../.claude/agents/refactorer.md) |
+| `optimizer` | パフォーマンス改善、ビルド高速化、出力品質の向上。計測→改善→計測のサイクルを回す | [.claude/agents/optimizer.md](../.claude/agents/optimizer.md) |
+| `openspec_specialist` | OpenSpec の仕様ライフサイクル全体を担当。仕様の作成・更新・検証・アーカイブを行う | [.claude/agents/openspec-specialist.md](../.claude/agents/openspec-specialist.md) |
 
 ---
 

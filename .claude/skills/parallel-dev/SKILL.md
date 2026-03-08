@@ -9,7 +9,7 @@ user-invocable: false
 
 dev_manager が複数の専門ロールを git worktree ベースで並列起動する際のルール・制約・判断基準をまとめる。
 
-本ルールは `roles/dev_manager.md` セクション4.1〜4.4 の並列オーケストレーションロジックおよび `roles/_base/common.md` セクション8 の worktree 共通ルールと連携して適用される。
+本ルールは `.claude/skills/dispatcher/SKILL.md` セクション4.1〜4.4 の並列オーケストレーションロジックおよび `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` セクション8 の worktree 共通ルールと連携して適用される。
 
 ---
 
@@ -96,7 +96,7 @@ worktree/<session-name>/<role-name>
 ### 4.2 命名規則の制約
 
 - `<session-name>` は `sessions/` 配下のセッションディレクトリ名と一致させる
-- `<role-name>` は `roles/` 配下のロール定義ファイル名（拡張子なし）と一致させる
+- `<role-name>` は `.claude/agents/` 配下のエージェント定義ファイル名（拡張子なし）と一致させる
 - 同一ロールが複数起動される場合は連番を付与する: `feature_builder_1`, `feature_builder_2`
 
 ---
@@ -105,8 +105,8 @@ worktree/<session-name>/<role-name>
 
 | 文書 | 内容 |
 |------|------|
-| `roles/dev_manager.md` セクション4 | 並列オーケストレーションロジック（判断フロー・実行手順・マージ戦略・フォールバック条件） |
-| `roles/_base/common.md` セクション8 | worktree 環境での共通ルール（コミット規約・マージ前確認・禁止事項） |
+| `.claude/skills/dispatcher/SKILL.md` セクション4 | 並列オーケストレーションロジック（判断フロー・実行手順・マージ戦略・フォールバック条件） |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` セクション8 | worktree 環境での共通ルール（コミット規約・マージ前確認・禁止事項） |
 | `docs/git-worktree-guideline.md` | worktree 並列開発ガイドライン（Stage 1〜3 の全体像） |
 
 ---

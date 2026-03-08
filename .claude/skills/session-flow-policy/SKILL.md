@@ -17,8 +17,8 @@ user-invocable: false
 
 ```
 .claude/skills/dispatcher/SKILL.md    # エントリーポイント（シナリオ分類）
-roles/dev_manager.md                  # オーケストレーター（セッション管理）
-roles/<specialist>.md                 # 専門ロール（タスク実行）
+.claude/skills/dispatcher/SKILL.md                  # オーケストレーター（セッション管理）
+.claude/agents/<specialist>.md        # 専門ロール（タスク実行）
 ```
 
 ### 1.1 ディスパッチャーをスキルにする理由
@@ -73,11 +73,11 @@ user-invocable: true
 
 ## 3. ロール定義の必須要素
 
-専門ロール（`roles/*.md`）には以下を含めること。
+専門ロール（`.claude/agents/*.md`）には以下を含めること。
 
 ### 3.1 必須セクション
 
-`roles/_base/common.md` のフォーマットに準拠し、以下のセクションを含める。
+`.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` のフォーマットに準拠し、以下のセクションを含める。
 
 1. **ロール名・概要** — 専門ロールの責務
 2. **作業フロー** — 番号付きステップ
@@ -126,7 +126,7 @@ user-invocable: true
 
 | セッションタイプ | エントリーポイント | オーケストレーター | 実行ロール |
 |----------------|-----------------|-----------------|-----------|
-| 開発セッション | `.claude/skills/dispatcher/` | `roles/dev_manager.md` | `roles/feature_builder.md`, `roles/reviewer.md` 等 |
+| 開発セッション | `.claude/skills/dispatcher/` | `.claude/skills/dispatcher/SKILL.md` | `.claude/agents/feature-builder.md`, `.claude/agents/reviewer.md` 等 |
 | トリアージセッション | `.claude/skills/triage/` | （スキル内で完結） | — |
 
 ### 5.1 新セッションタイプ追加時のチェックリスト
@@ -145,8 +145,8 @@ user-invocable: true
 | ファイル | 連動更新の内容 |
 |---------|-------------|
 | `.claude/skills/dispatcher/SKILL.md` | スキルの必須要素の変更がディスパッチャー定義に影響する場合 |
-| `roles/dev_manager.md` | オーケストレーション関連の必須記載の変更がマネージャー定義に影響する場合 |
-| `roles/_base/common.md` | ロール定義の必須要素の変更が共通ルールに影響する場合 |
+| `.claude/skills/dispatcher/SKILL.md` | オーケストレーション関連の必須記載の変更がマネージャー定義に影響する場合 |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` | ロール定義の必須要素の変更が共通ルールに影響する場合 |
 | `.claude/rules/commit-message.md` | セッション種別の追加・変更がコミットメッセージ規約に影響する場合 |
 
 ---

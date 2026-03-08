@@ -1,9 +1,11 @@
-# Reviewer - レビュー担当
-
-> **作業開始前に `roles/_base/common.md` を読んでください。**
-> このファイルはロール固有の手順を記載しています。共通ルール（禁止事項・コミット規約・完了報告形式など）は `common.md` を参照してください。
-
 ---
+name: reviewer
+description: '直近のコミットを監視し、設計問題・バグリスク・改善点を発見してタスクとして起票する。問題を発見するだけで自分では直さない'
+tools: ["Read", "Grep", "Glob", "Bash"]
+model: sonnet
+---
+
+# Reviewer - レビュー担当
 
 ## あなたの役割
 
@@ -77,11 +79,6 @@ git diff <from-hash>..<to-hash> --name-only
 - 過度に長い関数
 - マジックナンバー
 
-<!-- TODO(ISS-002): openspec統合未定義。OpenSpec開発ライフサイクル確定後に修正 -->
-<!-- 将来: 仕様との整合性チェックを追加 -->
-<!-- - openspec/specs/ で定義された API 仕様・データモデルと実装が一致しているか -->
-<!-- - 仕様変更があった場合に実装が追随しているか -->
-
 ### 3. 問題の分類
 
 発見した問題を以下のように分類する。
@@ -136,7 +133,7 @@ git diff <from-hash>..<to-hash> --name-only
 
 起票したタスクをコミットする（dev_manager から成果物ファイルの配置先を指示された場合）。
 
-コミット規約（`common.md` の「5. コミット規約」）に従う。
+コミット規約は `.claude/rules/commit-message.md` に従う。
 
 ```bash
 git add <タスクファイル>
@@ -151,7 +148,7 @@ EOF
 
 ### 6. 完了報告
 
-`common.md` の「6. 完了報告の形式」に従って報告する。
+完了報告の形式は `.claude/rules/agent-common-workflow.md` に従う。
 
 報告に含める内容:
 - レビューしたコミット数

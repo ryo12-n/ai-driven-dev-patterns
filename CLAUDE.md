@@ -92,7 +92,7 @@ upstream の最新変更を取り込む際は完全同期とする。
 
 | 知見の種類 | ルーティング先 | 起票者 |
 |-----------|-------------|--------|
-| セッション横断のルール・パターン | `roles/` or `.claude/rules/` | AI（dev_manager） |
+| セッション横断のルール・パターン | `.claude/agents/` or `.claude/rules/` | AI（dev_manager） |
 | 施策横断で再発しうる課題・知見 | `課題管理.csv` | AI（dev_manager） |
 | 具体的な次施策候補 | `backlog/` | AI（dev_manager）またはトリアージ |
 | 判断保留の気づき | `inbox/` | AI（判断保留時のみ） |
