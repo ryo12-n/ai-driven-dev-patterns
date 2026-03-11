@@ -355,19 +355,18 @@ CLAUDE.md は全レベルが**加算的**に読み込まれる。矛盾する指
 ├── commands/
 │   └── opsx/                  # OpenSpec カスタムコマンド（10ファイル）
 ├── rules/
-│   ├── code-in-docs.md
+│   ├── agent-common-workflow.md
+│   ├── agent-restrictions.md
 │   ├── commit-message.md
-│   ├── design-doc.md
-│   ├── pr-creation-fallback.md
-│   └── sync.md
+│   └── pr-creation-fallback.md
 ├── skills/
 │   ├── claude-directory-guide/ # 本ドキュメント（rules/ から移動済み）
 │   ├── role-format-guide/      # ロール定義フォーマットガイド（rules/ から移動済み）
-│   ├── parallel-dev/           # worktree 並列開発ルール（rules/ から移動済み）
+│   ├── parallel-dev/           # worktree 並列開発ルール（rules/ から移動済み）+ worktree-rules.md
 │   ├── openspec-development/   # OpenSpec 開発ルール（rules/ から移動済み）
 │   ├── openspec-*/SKILL.md     # OpenSpec スキル（10スキル）
 │   ├── triage/                 # トリアージスキル
-│   └── dispatcher/             # ディスパッチャースキル
+│   └── dispatcher/             # ディスパッチャースキル + session-start-branch-cleanup.md, sync.md
 └── （agents/, hooks/, plugins/ は未作成）
 
 CLAUDE.md                      # プロジェクトメモリ（ルート）

@@ -1,6 +1,3 @@
----
-paths: "triage/**/*.md"
----
 # コミットメッセージルール
 
 ## ベースルール: Conventional Commits

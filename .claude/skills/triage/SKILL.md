@@ -18,6 +18,10 @@ allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "TodoW
 | `triage-worker.md` | ワーカー: TGタスクの走査実行・スキャンレポート作成 |
 | `triage-evaluator.md` | 評価者: ワーカー走査結果の品質評価 |
 
+## セッション開始時のブランチ整理
+
+セッション開始時、作業フローに入る前に `.claude/skills/dispatcher/session-start-branch-cleanup.md` のルールに従ってブランチ整理を実施すること。
+
 ## 起動方法
 
 マネージャーとして起動し、`triage-manager.md` の作業フローに従う。
