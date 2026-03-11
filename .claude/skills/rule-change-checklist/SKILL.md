@@ -91,7 +91,7 @@ user-invocable: false
 | ファイル | 連動更新の内容 |
 |---------|-------------|
 | `.claude/skills/dispatcher/SKILL.md` | 「タスクリストに含める固定タスク」のチェックリスト参照 |
-| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` | 作業完了前チェック手順に影響する変更の場合 |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md)` + `.claude/skills/parallel-dev/worktree-rules.md` | 作業完了前チェック手順に影響する変更の場合 |
 | `docs/` 配下の関連ドキュメント | チェックリスト手順の記述 |
 
 ---

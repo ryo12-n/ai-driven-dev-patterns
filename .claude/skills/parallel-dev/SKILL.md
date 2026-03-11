@@ -9,7 +9,13 @@ user-invocable: false
 
 dev_manager が複数の専門ロールを git worktree ベースで並列起動する際のルール・制約・判断基準をまとめる。
 
-本ルールは `.claude/skills/dispatcher/SKILL.md` セクション4.1〜4.4 の並列オーケストレーションロジックおよび `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` セクション8 の worktree 共通ルールと連携して適用される。
+本ルールは `.claude/skills/dispatcher/SKILL.md` セクション4.1〜4.4 の並列オーケストレーションロジックおよび `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md)` + 本スキルディレクトリ内の `worktree-rules.md` の worktree 共通ルールと連携して適用される。
+
+## 補助ファイル
+
+| ファイル | 用途 |
+|---------|------|
+| `worktree-rules.md` | worktree 環境での共通ルール（ブランチ命名・コミット規約・マージ前確認・禁止事項） |
 
 ---
 
@@ -106,7 +112,7 @@ worktree/<session-name>/<role-name>
 | 文書 | 内容 |
 |------|------|
 | `.claude/skills/dispatcher/SKILL.md` セクション4 | 並列オーケストレーションロジック（判断フロー・実行手順・マージ戦略・フォールバック条件） |
-| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md, worktree-rules.md)` セクション8 | worktree 環境での共通ルール（コミット規約・マージ前確認・禁止事項） |
+| `.claude/rules/ (agent-common-workflow.md, agent-restrictions.md)` + 本スキル内 `worktree-rules.md` | worktree 環境での共通ルール（コミット規約・マージ前確認・禁止事項） |
 | `docs/git-worktree-guideline.md` | worktree 並列開発ガイドライン（Stage 1〜3 の全体像） |
 
 ---
