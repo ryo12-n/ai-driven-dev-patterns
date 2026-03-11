@@ -92,7 +92,11 @@ EOF
 
 | session-type | category | 用途 | 例 |
 |-------------|----------|------|-----|
-| `triage` | `YYYYMMDD` | トリアージセッション | `[triage] 20260304: inbox 走査・バックログ整理` |
+| `triage` | `YYYYMMDD` | トリアージセッション（後方互換） | `[triage] 20260304: inbox 走査・バックログ整理` |
+| `triage-mgr` | `YYYYMMDD` | マネージャー: 事前調査・計画・ディスパッチ・集約レポート | `[triage-mgr] 20260305: 事前調査・ワーカー割り当て` |
+| `triage-worker` | `YYYYMMDD` | ワーカー: 走査実行・スキャンレポート | `[triage-worker] 20260305: set-1 inbox/CSV スキャン完了` |
+| `triage-eval` | `YYYYMMDD` | 評価者: 評価レポート | `[triage-eval] 20260305: set-1 評価レポート作成` |
+| `sync-worker` | `YYYYMMDD` | ワーカー: 同期作業実行・同期レポート | `[sync-worker] 20260308: 同期作業完了・レポート作成` |
 | `maintenance` | 作業対象を示す名前 | 設定変更・リファクタ等の保守作業 | `[maintenance] settings: $schema と deny ルールを追加` |
 
 ### 例
@@ -117,3 +121,11 @@ EOF
 
 - `git push --force` の使用
 - 意味のないコミットメッセージ（`update`, `fix`, `wip` 等のみ）
+- session-type のないコミットメッセージ（セッションプレフィックス形式を使う場合、`[session-type]` プレフィックスは必須）
+- category のないコミットメッセージ（セッションプレフィックス形式を使う場合、施策名またはカテゴリは必須）
+
+---
+
+**作成日**: 2026-03-03
+**同期元**: dev-process-improvement `.claude/rules/commit-message.md`
+**最終同期日**: 2026-03-12
